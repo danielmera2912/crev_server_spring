@@ -99,9 +99,10 @@ CREATE TABLE IF NOT EXISTS `crev`.`equipo` (
 -- Table `crev`.`usuario_has_evento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_evento` (
+                                                           `id` INT NOT NULL,
                                                            `usuario_id` INT NOT NULL,
                                                            `evento_id` INT NOT NULL,
-                                                           PRIMARY KEY (`usuario_id`, `evento_id`),
+                                                           PRIMARY KEY (`id`),
     INDEX `fk_usuario_has_evento_evento1_idx` (`evento_id` ASC) VISIBLE,
     INDEX `fk_usuario_has_evento_usuario_idx` (`usuario_id` ASC) VISIBLE,
     CONSTRAINT `fk_usuario_has_evento_usuario`
@@ -121,9 +122,10 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_evento` (
 -- Table `crev`.`usuario_has_equipo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_equipo` (
+                                                           `id` INT NOT NULL,
                                                            `usuario_id` INT NOT NULL,
                                                            `equipo_id` INT NOT NULL,
-                                                           PRIMARY KEY (`usuario_id`, `equipo_id`),
+                                                           PRIMARY KEY (`id`),
     INDEX `fk_usuario_has_equipo_equipo1_idx` (`equipo_id` ASC) VISIBLE,
     INDEX `fk_usuario_has_equipo_usuario1_idx` (`usuario_id` ASC) VISIBLE,
     CONSTRAINT `fk_usuario_has_equipo_usuario1`
@@ -143,40 +145,31 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES
-                                                                                                   (1, 'Juan', '1990-05-15', 'https://example.com/avatar1.jpg', 'clave1', 'juan@example.com', '2022-01-01'),
-                                                                                                   (2, 'Pedro', '1995-10-10', 'https://example.com/avatar2.jpg', 'clave2', 'pedro@example.com', '2022-01-02'),
-                                                                                                   (3, 'Maria', '1985-03-25', 'https://example.com/avatar3.jpg', 'clave3', 'maria@example.com', '2022-01-03');
 
-INSERT INTO crev.ciudad (id, nombre) VALUES
-                                         (1, 'Barcelona'),
-                                         (2, 'Madrid'),
-                                         (3, 'Sevilla');
+-- Tabla usuario: --
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (1, 'Juan', '1990-01-01', 'avatar1.jpg', 'clave1', 'juan@gmail.com', '2023-03-09');
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (2, 'María', '1995-05-05', 'avatar2.jpg', 'clave2', 'maria@gmail.com', '2023-03-09');
 
-INSERT INTO crev.deporte (id, nombre) VALUES
-                                          (1, 'Fútbol'),
-                                          (2, 'Baloncesto'),
-                                          (3, 'Tenis');
+-- Tabla ciudad: --
+INSERT INTO crev.ciudad (id, nombre) VALUES (1, 'Barcelona');
+INSERT INTO crev.ciudad (id, nombre) VALUES (2, 'Madrid');
 
-INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, fecha_creacion) VALUES
-                                                                                     (1, '18:00', '2022-02-01', 1, 1, '2022-01-15'),
-                                                                                     (2, '20:00', '2022-03-01', 2, 2, '2022-01-16'),
-                                                                                     (3, '10:00', '2022-04-01', 3, 3, '2022-01-17');
+-- Tabla deporte: --
+INSERT INTO crev.deporte (id, nombre) VALUES (1, 'Fútbol');
+INSERT INTO crev.deporte (id, nombre) VALUES (2, 'Baloncesto');
 
-INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES
-                                                            (1, 'FC Barcelona', 'https://example.com/escudo1.jpg', 1),
-                                                            (2, 'Real Madrid', 'https://example.com/escudo2.jpg', 1),
-                                                            (3, 'Chicago Bulls', 'https://example.com/escudo3.jpg', 2);
+-- Tabla evento: --
+INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, fecha_creacion) VALUES (1, '15:00', '2023-03-12', 1, 1, '2023-03-09');
+INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, fecha_creacion) VALUES (2, '20:00', '2023-03-13', 2, 2, '2023-03-09');
 
-INSERT INTO crev.usuario_has_evento (usuario_id, evento_id) VALUES
-                                                                (1, 1),
-                                                                (2, 1),
-                                                                (3, 2),
-                                                                (1, 3),
-                                                                (2, 3);
+-- Tabla equipo: --
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (1, 'Equipo 1', 'escudo1.jpg', 1);
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (2, 'Equipo 2', 'escudo2.jpg', 1);
 
-INSERT INTO crev.usuario_has_equipo (usuario_id, equipo_id) VALUES
-                                                                (1, 1),
-                                                                (2, 1),
-                                                                (2, 2),
-                                                                (3, 3);
+-- Tabla usuario_has_evento: --
+INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (1, 1, 1);
+INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (2, 2, 1);
+
+-- Tabla usuario_has_equipo: --
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (1, 1, 1);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (2, 2, 2);
