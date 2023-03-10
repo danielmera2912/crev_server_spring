@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Deporte {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     private String nombre;
 }

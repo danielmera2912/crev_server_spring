@@ -18,7 +18,7 @@ USE `crev` ;
 -- Table `crev`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`usuario` (
-                                                `id` INT NOT NULL,
+                                                `id` INT NOT NULL AUTO_INCREMENT,
                                                 `nombre` VARCHAR(45) NOT NULL,
     `fecha_nacimiento` DATE NOT NULL,
     `avatar` VARCHAR(100) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario` (
 -- Table `crev`.`ciudad`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`ciudad` (
-                                               `id` INT NOT NULL,
+                                               `id` INT NOT NULL AUTO_INCREMENT,
                                                `nombre` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`ciudad` (
 -- Table `crev`.`deporte`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`deporte` (
-                                                `id` INT NOT NULL,
+                                                `id` INT NOT NULL AUTO_INCREMENT,
                                                 `nombre` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`deporte` (
 -- Table `crev`.`evento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`evento` (
-                                               `id` INT NOT NULL,
+                                               `id` INT NOT NULL AUTO_INCREMENT,
                                                `hora` VARCHAR(45) NOT NULL,
     `fecha` DATE NOT NULL,
     `ciudad_id` INT NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`evento` (
 -- Table `crev`.`equipo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`equipo` (
-                                               `id` INT NOT NULL,
+                                               `id` INT NOT NULL AUTO_INCREMENT,
                                                `nombre` VARCHAR(45) NOT NULL,
     `escudo` VARCHAR(100) NOT NULL,
     `evento_id` INT NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`equipo` (
 -- Table `crev`.`usuario_has_evento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_evento` (
-                                                           `id` INT NOT NULL,
+                                                           `id` INT NOT NULL AUTO_INCREMENT,
                                                            `usuario_id` INT NOT NULL,
                                                            `evento_id` INT NOT NULL,
                                                            PRIMARY KEY (`id`),
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_evento` (
 -- Table `crev`.`usuario_has_equipo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_equipo` (
-                                                           `id` INT NOT NULL,
+                                                           `id` INT NOT NULL AUTO_INCREMENT,
                                                            `usuario_id` INT NOT NULL,
                                                            `equipo_id` INT NOT NULL,
                                                            PRIMARY KEY (`id`),
@@ -144,6 +144,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_equipo` (
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 -- Tabla usuario: --

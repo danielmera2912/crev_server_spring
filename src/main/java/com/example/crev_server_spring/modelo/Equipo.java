@@ -15,7 +15,7 @@ import java.util.Set;
 public class Equipo {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String nombre;
     private String escudo;
     @ManyToOne
