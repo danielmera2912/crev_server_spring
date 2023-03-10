@@ -12,7 +12,7 @@ import java.util.Set;
 public class Usuario {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String nombre;
     @Column(name = "fecha_nacimiento")

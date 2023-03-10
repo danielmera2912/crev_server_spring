@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +16,9 @@ import java.util.Set;
 public class Evento {
     @Id
     @GeneratedValue
-    private Integer id;
-    private String nombre;
+    private Long id;
+    private String hora;
+    private LocalDate fecha;
     @ManyToOne
     @JoinColumn(name = "deporte_id")
     private Deporte deporte;
@@ -28,4 +30,6 @@ public class Evento {
     @Builder.Default
     @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
     private Set<UsuarioEvento> eventoUsuarios = new HashSet<>();
+    @Column(name = "fecha_creacion")
+    private LocalDate fechaCreacion;
 }
