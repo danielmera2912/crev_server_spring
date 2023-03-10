@@ -143,6 +143,278 @@
 			]
 		},
 		{
+			"name": "UsuarioEquipo",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "GET ALL",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_equipo",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_equipo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ONE",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_equipo/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_equipo",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "POST ONE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 2\r\n    },\r\n    \"equipo\": {\r\n        \"id\": 2\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario_equipo",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_equipo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "PUT ONE",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 2\r\n    },\r\n    \"equipo\": {\r\n        \"id\": 1\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario_equipo/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_equipo",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "DELETE ONE",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_equipo/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_equipo",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UsuarioEvento",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "GET ALL",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_evento",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_evento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ONE",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_evento/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_evento",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "POST ONE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 2\r\n    },\r\n    \"evento\": {\r\n        \"id\": 2\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario_evento",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_evento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "PUT ONE",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 2\r\n    },\r\n    \"evento\": {\r\n        \"id\": 1\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario_evento/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_evento",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "DELETE ONE",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_evento/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_evento",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Equipo",
 			"item": [
 				{
