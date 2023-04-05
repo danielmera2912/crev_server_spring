@@ -45,4 +45,11 @@ public class UsuarioService {
         return usuarioRepository.existsById(id);
     }
 
+
+    public Optional<Usuario> findByCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo);
+    }
+    public Optional<Usuario> findByNombre(String nombre) {
+        return usuarioRepository.findByNombre(nombre);
+    }
 }

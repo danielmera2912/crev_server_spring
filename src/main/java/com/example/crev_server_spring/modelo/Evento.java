@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -25,11 +27,29 @@ public class Evento {
     @ManyToOne
     @JoinColumn(name = "ciudad_id")
     private Ciudad ciudad;
-    @EqualsAndHashCode.Exclude @ToString.Exclude
     @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @Builder.Default
     @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
     private Set<UsuarioEvento> eventoUsuarios = new HashSet<>();
+    @Column(name = "puntos_local")
+    private Integer puntosLocal;
+
+    @Column(name = "puntos_visitante")
+    private Integer puntosVisitante;
+
+    @Column(name = "estado", columnDefinition = "varchar(20) default 'EN CURSO'")
+    private String estado;
     @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
+
+    public List<Usuario> getUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        for (UsuarioEvento eu : eventoUsuarios) {
+            usuarios.add(eu.getUsuario());
+        }
+        return usuarios;
+    }
+
 }

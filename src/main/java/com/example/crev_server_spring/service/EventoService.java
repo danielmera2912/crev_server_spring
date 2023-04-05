@@ -44,4 +44,16 @@ public class EventoService {
         return eventoRepository.existsById(id);
     }
 
+    public List<Evento> findByCiudadAndDeporte(String ciudad, String deporte) {
+        return eventoRepository.findByCiudadNombreContainingIgnoreCaseAndDeporteNombreContainingIgnoreCase(ciudad, deporte);
+    }
+
+    public List<Evento> findByCiudad(String ciudad) {
+        return eventoRepository.findByCiudadNombreContainingIgnoreCase(ciudad);
+    }
+
+    public List<Evento> findByDeporte(String deporte) {
+        return eventoRepository.findByDeporteNombreContainingIgnoreCase(deporte);
+    }
+
 }

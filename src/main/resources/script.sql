@@ -61,6 +61,9 @@ CREATE TABLE IF NOT EXISTS `crev`.`evento` (
     `ciudad_id` INT NOT NULL,
     `deporte_id` INT NOT NULL,
     `fecha_creacion` DATE NOT NULL,
+    `estado` VARCHAR(45) NOT NULL,
+    `puntos_local` INT NULL,
+    `puntos_visitante` INT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_evento_ciudad1_idx` (`ciudad_id` ASC) VISIBLE,
     INDEX `fk_evento_deporte1_idx` (`deporte_id` ASC) VISIBLE,
@@ -147,6 +150,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
+
 -- Tabla usuario: --
 INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (1, 'Juan', '1990-01-01', 'avatar1.jpg', 'clave1', 'juan@gmail.com', '2023-03-09');
 INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (2, 'María', '1995-05-05', 'avatar2.jpg', 'clave2', 'maria@gmail.com', '2023-03-09');
@@ -160,8 +164,8 @@ INSERT INTO crev.deporte (id, nombre) VALUES (1, 'Fútbol');
 INSERT INTO crev.deporte (id, nombre) VALUES (2, 'Baloncesto');
 
 -- Tabla evento: --
-INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, fecha_creacion) VALUES (1, '15:00', '2023-03-12', 1, 1, '2023-03-09');
-INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, fecha_creacion) VALUES (2, '20:00', '2023-03-13', 2, 2, '2023-03-09');
+INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (1, '15:00', '2023-03-12', 1, 1, "EN CURSO", '2023-03-09');
+INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (2, '20:00', '2023-03-13', 2, 2, "EN CURSO",'2023-03-09');
 
 -- Tabla equipo: --
 INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (1, 'Equipo 1', 'escudo1.jpg', 1);
@@ -170,6 +174,8 @@ INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (2, 'Equipo 2', '
 -- Tabla usuario_has_evento: --
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (1, 1, 1);
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (2, 2, 1);
+INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (3, 1, 2);
+INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (4, 2, 2);
 
 -- Tabla usuario_has_equipo: --
 INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (1, 1, 1);

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class UsuarioController {
@@ -25,7 +25,32 @@ public class UsuarioController {
     public Usuario obtenerUno(@PathVariable Long id) {
         return usuarioService.findById(id).orElseThrow(() -> new UsuarioNotFoundException(id));
     }
+    @GetMapping("/usuario/buscarPorCorreo/{correo}")
+    public Usuario obtenerPorCorreo(@PathVariable String correo) {
+        return usuarioService.findByCorreo(correo).orElseThrow(() -> new UsuarioNotFoundException(correo));
+    }
 
+    @GetMapping("/usuario/login")
+    public boolean loginUsuario(@RequestParam String correo, @RequestParam String clave) {
+        Optional<Usuario> usuarioOptional = usuarioService.findByCorreo(correo);
+
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            return usuario.getClave().equals(clave);
+        }
+
+        return false;
+    }
+    @GetMapping("/usuario/existeCorreo")
+    public boolean existeCorreo(@RequestParam String correo) {
+        Optional<Usuario> usuarioOptional = usuarioService.findByCorreo(correo);
+        return usuarioOptional.isPresent();
+    }
+    @GetMapping("/usuario/existeNombre")
+    public boolean existeNombre(@RequestParam String nombre) {
+        Optional<Usuario> usuarioOptional = usuarioService.findByNombre(nombre);
+        return usuarioOptional.isPresent();
+    }
     @PostMapping("/usuario")
     public Usuario newUsuario(@RequestBody Usuario newUsuario){
         return usuarioService.save(newUsuario);

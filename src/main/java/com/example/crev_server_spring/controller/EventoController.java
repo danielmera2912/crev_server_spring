@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventoController {
     private final EventoService eventoService;
+
     @GetMapping("/evento")
     public List<Evento> obtenerTodos() {
         List<Evento> result =  eventoService.findAll();
@@ -28,6 +29,8 @@ public class EventoController {
 
     @PostMapping("/evento")
     public Evento newEvento(@RequestBody Evento newEvento){
+        // Aquí establecemos el valor por defecto para el campo "estado"
+        newEvento.setEstado("EN CURSO");
         return eventoService.save(newEvento);
     }
 
@@ -51,4 +54,32 @@ public class EventoController {
             throw new EventoNotFoundException(id);
         }
     }
+    @GetMapping("/evento/busqueda")
+    public List<Evento> buscarEventos(
+            @RequestParam(required = false) String ciudad,
+            @RequestParam(required = false) String deporte) {
+
+        if (ciudad != null && deporte != null) {
+            List<Evento> eventos = eventoService.findByCiudadAndDeporte(ciudad, deporte);
+            if (eventos.isEmpty()) {
+                throw new EventoNotFoundException("No se encontraron eventos para los filtros proporcionados");
+            }
+            return eventos;
+        } else if (ciudad != null) {
+            List<Evento> eventos = eventoService.findByCiudad(ciudad);
+            if (eventos.isEmpty()) {
+                throw new EventoNotFoundException("No se encontraron eventos para los filtros proporcionados");
+            }
+            return eventos;
+        } else if (deporte != null) {
+            List<Evento> eventos = eventoService.findByDeporte(deporte);
+            if (eventos.isEmpty()) {
+                throw new EventoNotFoundException("No se encontraron eventos para los filtros proporcionados");
+            }
+            return eventos;
+        } else {
+            throw new IllegalArgumentException("Debe proporcionar al menos un parámetro de búsqueda");
+        }
+    }
+
 }
