@@ -35,14 +35,23 @@ public class EventoController {
     }
 
     @PutMapping("/evento/{id}")
-    public Evento updateEvento(@RequestBody Evento updateEvento, @PathVariable Long id){
+    public Evento updateEvento(@RequestBody Evento updateEvento, @PathVariable Long id) {
         if (eventoService.existsById(id)) {
+            Evento existingEvento = eventoService.findById(id).orElseThrow(() -> new EventoNotFoundException(id));
+
+            // Verifica si se proporcionó un valor para el campo "estado"
+            if (updateEvento.getEstado() == null) {
+                // Si no se proporcionó un valor, mantén el valor existente del estado
+                updateEvento.setEstado(existingEvento.getEstado());
+            }
+
             updateEvento.setId(id);
             return eventoService.save(updateEvento);
         } else {
             throw new EventoNotFoundException(id);
         }
     }
+
 
     @DeleteMapping("/evento/{id}")
     public Evento deleteEvento(@PathVariable Long id) {
