@@ -165,7 +165,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"nombre\": \"María Gomez\",\r\n        \"fechaNacimiento\": \"1995-05-05\",\r\n        \"avatar\": \"avatar2.jpg\",\r\n        \"clave\": \"clave2\",\r\n        \"correo\": \"maria@gmail.com\"\r\n    }",
+									"raw": "{\r\n        \"nombre\": \"Juan34\",\r\n        \"fechaNacimiento\": \"1930-05-05\",\r\n        \"avatar\": \"avatar1.jpg\",\r\n        \"clave\": \"fe4564bf242c244d704ee512ef6a8ea12abf75f7\",\r\n        \"correo\": \"juan@gmail.com\"\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -173,14 +173,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/2",
+									"raw": "localhost:8080/usuario/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"2"
+										"1"
 									]
 								}
 							},
@@ -1836,7 +1836,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\"hora\": \"13:00\",\r\n\"fecha\": \"2023-04-04\",\r\n\"deporte\": {\r\n\"id\": 1\r\n},\r\n\"ciudad\": {\r\n\"id\": 1\r\n},\r\n\"eventoUsuarios\": [],\r\n\"fechaCreacion\": \"2023-04-04\"\r\n}",
+									"raw": "{\r\n\"hora\": \"13:00\",\r\n\"fecha\": \"2023-04-04\",\r\n\"deporte\": {\r\n\"id\": 1\r\n},\r\n\"ciudad\": {\r\n\"id\": 1\r\n}\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1889,7 +1889,7 @@
 					"name": "PUT",
 					"item": [
 						{
-							"name": "PUT ONE",
+							"name": "PUT ONE sin estado",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -1911,6 +1911,34 @@
 									"path": [
 										"evento",
 										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT ONE con estado",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"hora\": \"15:00\",\r\n        \"fecha\": \"2023-03-12\",\r\n    \"deporte\": {\r\n        \"id\": 1\r\n    },\r\n    \"ciudad\": {\r\n        \"id\": 2\r\n    },\r\n    \"estado\": \"FINALIZADO\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/evento/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"evento",
+										"1"
 									]
 								}
 							},
