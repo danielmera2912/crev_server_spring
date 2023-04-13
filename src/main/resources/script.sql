@@ -152,11 +152,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 -- Tabla usuario: --
-INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (1, 'Juan34', '1990-01-01', 'avatar1.jpg', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'juan@gmail.com', '2000-03-09');
-INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (2, 'Maria1', '1995-05-05', 'avatar2.jpg', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'maria@gmail.com', '2000-03-09');
-INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (3, 'Pepito', '1995-05-05', 'avatar3.jpg', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'pepito@gmail.com', '2000-03-09');
-INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (4, 'danimera', '1995-05-05', 'avatar4.jpg', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'danimera@g.com', '2000-03-09');
-INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (5, 'nihon', '1995-05-05', 'avatar5.jpg', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'nihon@gmail.com', '2000-03-09');
+INSERT INTO crev.usuario (nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES ('Plaza vacante', '0001-01-01', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png', 'noaccesible', 'noaccesible', '0001-01-01');
+UPDATE crev.usuario SET id = 0 WHERE id = 1;
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (1, 'Juan34', '1990-01-01', 'https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'juan@gmail.com', '2000-03-09');
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (2, 'Maria1', '1995-05-05', 'https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'maria@gmail.com', '2000-03-09');
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (3, 'Pepito', '1995-05-05', 'https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'pepito@gmail.com', '2000-03-09');
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (4, 'danimera', '1995-05-05', 'https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'danimera@g.com', '2000-03-09');
+INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, fecha_creacion) VALUES (5, 'nihon', '1995-05-05', 'https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600', 'fe4564bf242c244d704ee512ef6a8ea12abf75f7', 'nihon@gmail.com', '2000-03-09');
 
 -- Tabla ciudad: --
 INSERT INTO crev.ciudad (id, nombre) VALUES (1, 'Barcelona');

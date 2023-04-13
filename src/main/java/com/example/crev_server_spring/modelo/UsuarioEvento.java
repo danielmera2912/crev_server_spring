@@ -19,4 +19,5 @@ public class UsuarioEvento {
     @ManyToOne
     @JoinColumn(name = "evento_id")
     private Evento evento;
+
 }

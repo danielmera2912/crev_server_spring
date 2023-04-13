@@ -5,10 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -45,11 +43,16 @@ public class Evento {
     private LocalDate fechaCreacion;
 
     public List<Usuario> getUsuarios() {
+        List<UsuarioEvento> eventoUsuariosOrdenados = eventoUsuarios.stream()
+                .sorted(Comparator.comparingLong(UsuarioEvento::getId))
+                .collect(Collectors.toList());
         List<Usuario> usuarios = new ArrayList<>();
-        for (UsuarioEvento eu : eventoUsuarios) {
+        for (UsuarioEvento eu : eventoUsuariosOrdenados) {
             usuarios.add(eu.getUsuario());
         }
         return usuarios;
     }
+
+
 
 }
