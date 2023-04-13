@@ -45,12 +45,16 @@ public class EventoController {
                 updateEvento.setEstado(existingEvento.getEstado());
             }
 
+            // Copiar el valor existente del campo "deporte" al objeto actualizado
+            updateEvento.setDeporte(existingEvento.getDeporte());
+
             updateEvento.setId(id);
             return eventoService.save(updateEvento);
         } else {
             throw new EventoNotFoundException(id);
         }
     }
+
 
 
     @DeleteMapping("/evento/{id}")
