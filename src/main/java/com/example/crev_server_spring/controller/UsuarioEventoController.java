@@ -28,6 +28,14 @@ public class UsuarioEventoController {
     public UsuarioEvento obtenerUno(@PathVariable Long id) {
         return usuarioEventoService.findById(id).orElseThrow(() -> new UsuarioEventoNotFoundException(id));
     }
+    @GetMapping("/usuario_evento/evento/{id}")
+    public List<UsuarioEvento> obtenerPorEventoId(@PathVariable Long id) {
+        List<UsuarioEvento> result = usuarioEventoService.findByEventoId(id);
+        if(result.isEmpty()){
+            throw new UsuarioEventoNotFoundException();
+        }
+        return result;
+    }
 
     @PostMapping("/usuario_evento")
     public UsuarioEvento newUsuarioEvento(@RequestBody UsuarioEvento newUsuarioEvento){
