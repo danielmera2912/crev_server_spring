@@ -795,6 +795,26 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET ALL de una id de evento",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario_evento/evento/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario_evento",
+										"evento",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1239,6 +1259,51 @@
 									"path": [
 										"equipo",
 										"-1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET USUARIOS de un EQUIPO",
+					"item": [
+						{
+							"name": "GET",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/equipo/1/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"equipo",
+										"1",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ERROR",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/equipo/-1/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"equipo",
+										"-1",
+										"usuarios"
 									]
 								}
 							},
@@ -1792,14 +1857,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/evento/3",
+									"raw": "localhost:8080/evento/4",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"evento",
-										"3"
+										"4"
 									]
 								}
 							},
@@ -1895,7 +1960,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n    \"hora\": \"15:00\",\r\n        \"fecha\": \"2023-03-12\",\r\n    \"deporte\": {\r\n        \"id\": 1\r\n    },\r\n    \"ciudad\": {\r\n        \"id\": 2\r\n    }\r\n\r\n}",
+									"raw": "{\r\n    \r\n    \"hora\": \"23:00\",\r\n        \"fecha\": \"2020-10-11\",\r\n    \"ciudad\": {\r\n        \"id\": 2\r\n    }\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1903,14 +1968,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/evento/3",
+									"raw": "localhost:8080/evento/4",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"evento",
-										"3"
+										"4"
 									]
 								}
 							},
@@ -2201,6 +2266,51 @@
 											"key": "deporte",
 											"value": "qqqqqqqqqqqq"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Busqueda de Equipos",
+					"item": [
+						{
+							"name": "GET",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/evento/2/equipos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"evento",
+										"2",
+										"equipos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ERROR",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/evento/-1/equipos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"evento",
+										"-1",
+										"equipos"
 									]
 								}
 							},

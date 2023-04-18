@@ -18,6 +18,6 @@ public class Deporte {
     @Id
     @GeneratedValue
     private Long id;
-
     private String nombre;
+    private Boolean equipos;
 }

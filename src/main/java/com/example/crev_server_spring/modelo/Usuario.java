@@ -7,8 +7,21 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data @Builder @NoArgsConstructor @AllArgsConstructor @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "usuario")
+@JsonIgnoreProperties(value = {"usuario"})
 public class Usuario {
     @Id
     @GeneratedValue
@@ -36,4 +49,8 @@ public class Usuario {
     @Builder.Default
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<UsuarioEvento> eventosUsuario = new HashSet<>();
+
+    public Usuario getUsuario() {
+        return this;
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.crev_server_spring.controller;
 
 import com.example.crev_server_spring.error.EventoNotFoundException;
+import com.example.crev_server_spring.modelo.Equipo;
 import com.example.crev_server_spring.modelo.Evento;
 import com.example.crev_server_spring.service.EventoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,15 @@ public class EventoController {
         // Aquí establecemos el valor por defecto para el campo "estado"
         newEvento.setEstado("EN CURSO");
         return eventoService.save(newEvento);
+    }
+    @GetMapping("/evento/{id}/equipos")
+    public ResponseEntity<List<Equipo>> getEquiposPorEvento(@PathVariable Long id) {
+        Evento evento = eventoService.findById(id)
+                .orElseThrow(() -> new EventoNotFoundException(id));
+
+        List<Equipo> equipos = evento.getEquipos();
+
+        return ResponseEntity.ok().body(equipos);
     }
 
     @PutMapping("/evento/{id}")

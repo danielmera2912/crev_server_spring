@@ -42,8 +42,6 @@ public class UsuarioEventoService {
     }
 
 
-    public List<UsuarioEvento> findByEventoId(Long id) {
-        return usuarioEventoRepository.findByEventoId(id);
-    }
+    public List<UsuarioEvento> findByEventoId(Long id) { return usuarioEventoRepository.findByEventoId(id); }
 
 }

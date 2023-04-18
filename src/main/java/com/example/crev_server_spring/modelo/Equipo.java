@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -18,6 +20,9 @@ public class Equipo {
     private Long id;
     private String nombre;
     private String escudo;
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipo")
+    private List<UsuarioEquipo> usuarioEquipos;
     @ManyToOne
     @JoinColumn(name = "evento_id")
     private Evento evento;
@@ -26,4 +31,10 @@ public class Equipo {
     @Builder.Default
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     private Set<UsuarioEquipo> equipoUsuarios = new HashSet<>();
+    public List<Usuario> getUsuarios() {
+        return usuarioEquipos.stream()
+                .map(UsuarioEquipo::getUsuario)
+                .collect(Collectors.toList());
+    }
+
 }

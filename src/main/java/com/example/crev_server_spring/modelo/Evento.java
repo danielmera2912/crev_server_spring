@@ -31,6 +31,9 @@ public class Evento {
     @Builder.Default
     @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
     private Set<UsuarioEvento> eventoUsuarios = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+    private List<Equipo> equipos;
     @Column(name = "puntos_local")
     private Integer puntosLocal;
 
@@ -54,5 +57,7 @@ public class Evento {
     }
 
 
-
+    public List<Equipo> getEquipos() {
+        return equipos;
+    }
 }

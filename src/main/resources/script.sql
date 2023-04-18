@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`ciudad` (
 CREATE TABLE IF NOT EXISTS `crev`.`deporte` (
                                                 `id` INT NOT NULL AUTO_INCREMENT,
                                                 `nombre` VARCHAR(45) NOT NULL,
+    `equipos` BOOLEAN NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -111,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_evento` (
     CONSTRAINT `fk_usuario_has_evento_usuario`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `crev`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
     CONSTRAINT `fk_usuario_has_evento_evento1`
     FOREIGN KEY (`evento_id`)
     REFERENCES `crev`.`evento` (`id`)
@@ -134,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario_has_equipo` (
     CONSTRAINT `fk_usuario_has_equipo_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `crev`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
     CONSTRAINT `fk_usuario_has_equipo_equipo1`
     FOREIGN KEY (`equipo_id`)
     REFERENCES `crev`.`equipo` (`id`)
@@ -163,20 +164,27 @@ INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, f
 -- Tabla ciudad: --
 INSERT INTO crev.ciudad (id, nombre) VALUES (1, 'Barcelona');
 INSERT INTO crev.ciudad (id, nombre) VALUES (2, 'Madrid');
+INSERT INTO crev.ciudad (id, nombre) VALUES (3, 'Bilbao');
 
 -- Tabla deporte: --
-INSERT INTO crev.deporte (id, nombre) VALUES (1, 'Fútbol');
-INSERT INTO crev.deporte (id, nombre) VALUES (2, 'Baloncesto');
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (1, 'Fútbol Sala', true);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (2, 'Baloncesto', true);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (3, 'Padel', false);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (4, 'Tenis', false);
 
 -- Tabla evento: --
 INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (1, '15:00', '2023-03-12', 1, 1, "EN CURSO", '2023-03-09');
 INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (2, '20:00', '2023-03-13', 2, 2, "EN CURSO",'2023-03-09');
 INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (3, '20:00', '2023-03-13', 1, 2, "EN CURSO",'2023-03-09');
+INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (4, '12:30', '2023-03-23', 3, 3, "EN CURSO",'2023-03-09');
 
 -- Tabla equipo: --
-INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (1, 'Equipo 1', 'escudo1.jpg', 1);
-INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (2, 'Equipo 2', 'escudo2.jpg', 1);
-
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (1, 'Ciervo Verde', 'https://i.ibb.co/fYRFPbh/ciervoverde.png', 1);
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (2, 'Ballena Azul', 'https://i.ibb.co/k9LNHCX/ballenazul.png', 1);
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (3, 'Ciervo Verde', 'https://i.ibb.co/fYRFPbh/ciervoverde.png', 2);
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (4, 'Ballena Azul', 'https://i.ibb.co/k9LNHCX/ballenazul.png', 2);
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (5, 'Ciervo Verde', 'https://i.ibb.co/fYRFPbh/ciervoverde.png', 3);
+INSERT INTO crev.equipo (id, nombre, escudo, evento_id) VALUES (6, 'Ballena Azul', 'https://i.ibb.co/k9LNHCX/ballenazul.png', 3);
 -- Tabla usuario_has_evento: --
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (1, 1, 1);
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (2, 2, 1);
@@ -184,7 +192,39 @@ INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (3, 1, 2)
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (4, 2, 2);
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (5, 3, 3);
 INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (6, 5, 3);
+INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (7, 3, 4);
+INSERT INTO crev.usuario_has_evento (id, usuario_id, evento_id) VALUES (8, 5, 4);
 
 -- Tabla usuario_has_equipo: --
 INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (1, 1, 1);
 INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (2, 2, 2);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (3, 3, 1);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (4, 4, 2);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (5, 0, 1);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (6, 0, 2);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (7, 0, 1);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (8, 0, 2);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (9, 0, 1);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (10, 0, 2);
+
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (11, 1, 3);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (12, 2, 4);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (13, 3, 3);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (14, 4, 4);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (15, 0, 3);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (16, 0, 4);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (17, 0, 3);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (18, 0, 4);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (19, 0, 3);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (20, 0, 4);
+
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (21, 1, 5);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (22, 2, 6);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (23, 3, 5);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (24, 4, 6);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (25, 0, 5);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (26, 0, 6);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (27, 0, 5);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (28, 0, 6);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (29, 0, 5);
+INSERT INTO crev.usuario_has_equipo (id, usuario_id, equipo_id) VALUES (30, 0, 6);

@@ -40,5 +40,4 @@ public class UsuarioEquipoService {
     public boolean existsById(Long id) {
         return usuarioEquipoRepository.existsById(id);
     }
-
 }

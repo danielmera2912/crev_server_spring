@@ -1,9 +1,11 @@
 package com.example.crev_server_spring.controller;
 
 import com.example.crev_server_spring.error.UsuarioEquipoNotFoundException;
+import com.example.crev_server_spring.error.UsuarioEventoNotFoundException;
 import com.example.crev_server_spring.error.UsuarioNotFoundException;
 import com.example.crev_server_spring.modelo.Usuario;
 import com.example.crev_server_spring.modelo.UsuarioEquipo;
+import com.example.crev_server_spring.modelo.UsuarioEvento;
 import com.example.crev_server_spring.service.UsuarioEquipoService;
 import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,6 @@ public class UsuarioEquipoController {
     public UsuarioEquipo obtenerUno(@PathVariable Long id) {
         return usuarioEquipoService.findById(id).orElseThrow(() -> new UsuarioEquipoNotFoundException(id));
     }
-
     @PostMapping("/usuario_equipo")
     public UsuarioEquipo newUsuarioEquipo(@RequestBody UsuarioEquipo newUsuarioEquipo){
         return usuarioEquipoService.save(newUsuarioEquipo);

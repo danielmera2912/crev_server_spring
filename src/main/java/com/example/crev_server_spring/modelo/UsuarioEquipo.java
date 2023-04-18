@@ -22,4 +22,5 @@ public class UsuarioEquipo {
     @ManyToOne
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
+
 }
