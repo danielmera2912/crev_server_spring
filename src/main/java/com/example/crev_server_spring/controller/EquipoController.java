@@ -37,8 +37,8 @@ public class EquipoController {
                 .getUsuarios().stream()
                 .map(ue -> ue.getUsuario())
                 .collect(Collectors.toList());
-
     }
+
     @PostMapping("/equipo")
     public Equipo newEquipo(@RequestBody Equipo newEquipo){
         return equipoService.save(newEquipo);

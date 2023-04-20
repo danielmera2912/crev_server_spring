@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,9 +33,12 @@ public class Equipo {
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     private Set<UsuarioEquipo> equipoUsuarios = new HashSet<>();
     public List<Usuario> getUsuarios() {
-        return usuarioEquipos.stream()
-                .map(UsuarioEquipo::getUsuario)
-                .collect(Collectors.toList());
+        return usuarioEquipos == null ? new ArrayList<>() :
+                usuarioEquipos.stream()
+                        .map(ue -> ue == null ? null : ue.getUsuario())
+                        .filter(u -> u != null)
+                        .collect(Collectors.toList());
     }
+
 
 }
