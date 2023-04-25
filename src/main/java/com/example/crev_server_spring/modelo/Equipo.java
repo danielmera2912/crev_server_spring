@@ -39,6 +39,13 @@ public class Equipo {
                         .filter(u -> u != null)
                         .collect(Collectors.toList());
     }
+    public List<Long> getUsuarioEquipoIds() {
+        return equipoUsuarios.stream()
+                .map(ue -> ue.getId())
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
 
 
 }

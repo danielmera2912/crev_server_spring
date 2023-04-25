@@ -38,6 +38,13 @@ public class EquipoController {
                 .map(ue -> ue.getUsuario())
                 .collect(Collectors.toList());
     }
+    @GetMapping("/equipo/{id}/usuario-equipo-ids")
+    public List<Long> obtenerUsuarioEquipoIdsDeEquipo(@PathVariable Long id) {
+        Equipo equipo = equipoService.findById(id)
+                .orElseThrow(() -> new EquipoNotFoundException(id));
+        return equipo.getUsuarioEquipoIds();
+    }
+
 
     @PostMapping("/equipo")
     public Equipo newEquipo(@RequestBody Equipo newEquipo){

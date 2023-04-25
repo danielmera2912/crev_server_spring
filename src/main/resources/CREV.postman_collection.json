@@ -610,7 +610,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 2\r\n    },\r\n    \"equipo\": {\r\n        \"id\": 1\r\n        }\r\n    }",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"equipo\": {\r\n        \"id\": 6\r\n        }\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1085,7 +1085,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"Equipo Nuevo\",\r\n    \"escudo\": \"escudo1.jpg\",\r\n    \"evento\": {\r\n        \"id\": 1\r\n    }\r\n}",
+									"raw": "{\r\n    \"nombre\": \"Ciervo Verde\",\r\n    \"escudo\": \"https://i.ibb.co/fYRFPbh/ciervoverde.png\",\r\n    \"evento\": {\r\n        \"id\": 1\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1304,6 +1304,51 @@
 										"equipo",
 										"-1",
 										"usuarios"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET USUARIOS de un EQUIPO (ID)",
+					"item": [
+						{
+							"name": "GET",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/equipo/1/usuario-equipo-ids",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"equipo",
+										"1",
+										"usuario-equipo-ids"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ERROR",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/equipo/-1/usuario-equipo-ids",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"equipo",
+										"-1",
+										"usuario-equipo-ids"
 									]
 								}
 							},
