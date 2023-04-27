@@ -2,6 +2,7 @@ package com.example.crev_server_spring.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.query.Query;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -45,6 +46,17 @@ public class Equipo {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+
+    public List<UsuarioEvento> getEventoUsuarios() {
+        return usuarioEquipos.stream()
+                .flatMap(ue -> ue.getUsuario().getEventosUsuario().stream())
+                .filter(ue -> ue.getEvento().getEquipos().contains(this))
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+
 
 
 

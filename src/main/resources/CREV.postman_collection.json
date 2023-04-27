@@ -474,6 +474,53 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "obtener eventos de un usuario",
+					"item": [
+						{
+							"name": "GET",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuarios/1/eventos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuarios",
+										"1",
+										"eventos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ERROR",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuarios/-1/eventos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuarios",
+										"-1",
+										"eventos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
