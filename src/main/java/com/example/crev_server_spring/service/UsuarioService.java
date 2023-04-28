@@ -52,4 +52,10 @@ public class UsuarioService {
     public Optional<Usuario> findByNombre(String nombre) {
         return usuarioRepository.findByNombre(nombre);
     }
+
+    public List<Usuario> findByNombreContaining(String nombre) {
+        return usuarioRepository.findByNombreContainingAndIdNot(nombre, 0L);
+    }
+
+
 }

@@ -51,6 +51,10 @@ public class UsuarioController {
         Optional<Usuario> usuarioOptional = usuarioService.findByNombre(nombre);
         return usuarioOptional.isPresent();
     }
+    @GetMapping("/usuario/buscarPorNombre/{nombre}")
+    public List<Usuario> buscarPorNombre(@PathVariable String nombre) {
+        return usuarioService.findByNombreContaining(nombre);
+    }
     @PostMapping("/usuario")
     public Usuario newUsuario(@RequestBody Usuario newUsuario){
         return usuarioService.save(newUsuario);
