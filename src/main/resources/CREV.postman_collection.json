@@ -521,6 +521,32 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "obtener usuarios por un nombre",
+					"item": [
+						{
+							"name": "GET",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuario/buscarPorNombre/la",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"buscarPorNombre",
+										"la"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1132,7 +1158,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"Ciervo Verde\",\r\n    \"escudo\": \"https://i.ibb.co/fYRFPbh/ciervoverde.png\",\r\n    \"evento\": {\r\n        \"id\": 1\r\n    }\r\n}",
+									"raw": "{\r\n    \"nombre\": \"Ciervo Verde\",\r\n    \"escudo\": \"https://i.ibb.co/fYRFPbh/ciervoverde.png\",\r\n    \"evento\": {\r\n        \"id\": 16\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
