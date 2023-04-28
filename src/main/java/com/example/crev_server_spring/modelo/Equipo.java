@@ -24,7 +24,8 @@ public class Equipo {
     private String escudo;
     @JsonIgnore
     @OneToMany(mappedBy = "equipo")
-    private List<UsuarioEquipo> usuarioEquipos;
+    private List<UsuarioEquipo> usuarioEquipos = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "evento_id")
     private Evento evento;
