@@ -15,11 +15,31 @@
 						{
 							"name": "GET ALL",
 							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
 								"disabledSystemHeaders": {}
 							},
 							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "Juan34",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "fe4564bf242c244d704ee512ef6a8ea12abf75f7",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "localhost:8080/usuario",
 									"host": [
@@ -102,11 +122,14 @@
 								"disabledSystemHeaders": {}
 							},
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"Pepe\",\r\n    \"fechaNacimiento\": \"1990-01-01\",\r\n    \"avatar\": \"avatar1.jpg\",\r\n    \"clave\": \"clave1\",\r\n    \"correo\": \"pepe@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"nombre\": \"Pepitogrillo\",\r\n    \"fechaNacimiento\": \"1990-01-01\",\r\n    \"avatar\": \"https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600\",\r\n    \"clave\": \"fe4564bf242c244d704ee512ef6a8ea12abf75f7\",\r\n    \"correo\": \"pepitogrillo@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -165,7 +188,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"nombre\": \"Juan34\",\r\n        \"fechaNacimiento\": \"1930-05-05\",\r\n        \"avatar\": \"avatar1.jpg\",\r\n        \"clave\": \"fe4564bf242c244d704ee512ef6a8ea12abf75f7\",\r\n        \"correo\": \"juan@gmail.com\"\r\n    }",
+									"raw": "{\r\n        \"nombre\": \"Pepitogrillo\",\r\n        \"fechaNacimiento\": \"1930-05-05\",\r\n        \"avatar\": \"https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600\",\r\n        \"clave\": \"fe4564bf242c244d704ee512ef6a8ea12abf75f7\",\r\n        \"correo\": \"pepitogrillo@gmail.com\"\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -173,14 +196,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/1",
+									"raw": "localhost:8080/usuario/14",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"1"
+										"14"
 									]
 								}
 							},
@@ -250,17 +273,32 @@
 						{
 							"name": "DELETE ONE",
 							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "juan34",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "fe4564bf242c244d704ee512ef6a8ea12abf75f7",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/3",
+									"raw": "localhost:8080/usuario/13",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"3"
+										"13"
 									]
 								}
 							},
@@ -1093,6 +1131,9 @@
 						{
 							"name": "GET ALL",
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -2435,6 +2476,60 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Archivo",
+			"item": [
+				{
+					"name": "POST archivo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file\n",
+									"type": "file",
+									"src": "/C:/Users/juper/OneDrive/Imágenes/copiaa.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/media/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"media",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET imagen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/media/copiaa.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"media",
+								"copiaa.jpg"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
