@@ -49,6 +49,14 @@ public class Usuario {
     @Builder.Default
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<UsuarioEvento> eventosUsuario = new HashSet<>();
+    @Column(name = "account_non_expired")
+    private boolean accountNonExpired = true;
+    @Column(name = "account_non_locked")
+    private boolean accountNonLocked = true;
+    @Column(name = "credentials_non_expired")
+    private boolean credentialsNonExpired = true;
+    @Column(nullable = false)
+    private boolean enabled = true;
 
     public Usuario getUsuario() {
         return this;
