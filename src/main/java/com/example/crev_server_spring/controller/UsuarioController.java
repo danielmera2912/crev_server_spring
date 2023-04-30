@@ -57,8 +57,10 @@ public class UsuarioController {
     }
     @PostMapping("/usuario")
     public Usuario newUsuario(@RequestBody Usuario newUsuario){
+        newUsuario.setRol(Usuario.Rol.USER);
         return usuarioService.save(newUsuario);
     }
+
 
     @PutMapping("/usuario/{id}")
     public Usuario updateUsuario(@RequestBody Usuario updateUsuario, @PathVariable Long id){

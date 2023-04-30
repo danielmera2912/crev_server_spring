@@ -38,7 +38,9 @@ public class Usuario {
     private String correo;
     @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
-
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Rol rol = Rol.USER;
     @EqualsAndHashCode.Exclude @ToString.Exclude
     @JsonIgnore
     @Builder.Default
@@ -49,6 +51,7 @@ public class Usuario {
     @Builder.Default
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<UsuarioEvento> eventosUsuario = new HashSet<>();
+    /*
     @Column(name = "account_non_expired")
     private boolean accountNonExpired = true;
     @Column(name = "account_non_locked")
@@ -57,9 +60,12 @@ public class Usuario {
     private boolean credentialsNonExpired = true;
     @Column(nullable = false)
     private boolean enabled = true;
-
+*/
     public Usuario getUsuario() {
         return this;
     }
-
+    public enum Rol {
+        ADMIN,
+        USER
+    }
 }
