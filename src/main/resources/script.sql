@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `crev`.`usuario` (
     `clave` VARCHAR(45) NOT NULL,
     `correo` VARCHAR(100) NOT NULL,
     `fecha_creacion` DATE NOT NULL,
+    `rol` ENUM('ADMIN', 'USER') NOT NULL DEFAULT 'USER',
     PRIMARY KEY (`id`),
     UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE,
     UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE)
