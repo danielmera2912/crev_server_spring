@@ -20,19 +20,7 @@
 							},
 							"request": {
 								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "Juan34",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "fe4564bf242c244d704ee512ef6a8ea12abf75f7",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
@@ -2016,14 +2004,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/evento/4",
+									"raw": "localhost:8080/evento/5",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"evento",
-										"4"
+										"5"
 									]
 								}
 							},
@@ -2148,6 +2136,34 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \r\n    \"hora\": \"15:00\",\r\n        \"fecha\": \"2023-03-12\",\r\n    \"deporte\": {\r\n        \"id\": 1\r\n    },\r\n    \"ciudad\": {\r\n        \"id\": 2\r\n    },\r\n    \"estado\": \"FINALIZADO\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/evento/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"evento",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT ONE con estado y puntuaciones",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"hora\": \"15:00\",\r\n        \"fecha\": \"2023-03-12\",\r\n    \"deporte\": {\r\n        \"id\": 1\r\n    },\r\n    \"ciudad\": {\r\n        \"id\": 2\r\n    },\r\n    \"estado\": \"FINALIZADO\",\r\n    \"puntosLocal\": 10,\r\n    \"puntosVisitante\": 4\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
