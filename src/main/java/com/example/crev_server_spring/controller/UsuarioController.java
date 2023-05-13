@@ -4,21 +4,45 @@ import com.example.crev_server_spring.error.UsuarioNotFoundException;
 import com.example.crev_server_spring.modelo.Usuario;
 import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 @RestController
 @RequiredArgsConstructor
 public class UsuarioController {
     private final UsuarioService usuarioService;
     @GetMapping("/usuario")
-    public List<Usuario> obtenerTodos() {
-        List<Usuario> result =  usuarioService.findAll();
-        if(result.isEmpty()){
+    public ResponseEntity<Map<String, Object>> obtenerTodos(@RequestParam(defaultValue = "0") Integer page) {
+        int size = 9;
+
+        // Obtiene todos los usuarios, incluido el usuario con ID 0
+        List<Usuario> usuarios = usuarioService.findAll();
+
+        // Elimina el usuario con ID 0 de la lista de usuarios
+        usuarios.removeIf(usuario -> usuario.getId() == 0);
+
+        // Calcula los índices de inicio y fin para la página solicitada
+        int startIndex = page * size;
+        int endIndex = Math.min(startIndex + size, usuarios.size());
+
+        // Si la página solicitada está fuera de rango, devuelve una excepción
+        if (startIndex >= usuarios.size()) {
             throw new UsuarioNotFoundException();
         }
-        return result;
+
+        // Obtiene los usuarios para la página solicitada
+        List<Usuario> usuariosPaginados = usuarios.subList(startIndex, endIndex);
+
+        // Crea la respuesta con los usuarios paginados y la información de paginación
+        Map<String, Object> response = new HashMap<>();
+        response.put("usuarios", usuariosPaginados);
+        response.put("totalPages", (int) Math.ceil((double) usuarios.size() / size));
+        response.put("currentPage", page);
+
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/usuario/{id}")

@@ -10,7 +10,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +20,9 @@ public class EventoController {
     private final EventoService eventoService;
 
     @GetMapping("/evento")
-    public ResponseEntity<List<Evento>> obtenerTodos(
+    public ResponseEntity<Map<String, Object>> obtenerTodos(
             @RequestParam(defaultValue = "0") Integer page) {
-        int size = 10; //cambiar el valor predeterminado del tamaño a 10
+        int size = 10;
 
         Page<Evento> eventosPage = eventoService.findAllPaginated(page, size);
         List<Evento> eventos = eventosPage.getContent();
@@ -29,12 +31,14 @@ public class EventoController {
             throw new EventoNotFoundException();
         }
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("totalPages", Integer.toString(eventosPage.getTotalPages()));
-        headers.add("currentPage", Integer.toString(eventosPage.getNumber()));
+        Map<String, Object> response = new HashMap<>();
+        response.put("eventos", eventos);
+        response.put("totalPages", eventosPage.getTotalPages());
+        response.put("currentPage", eventosPage.getNumber());
 
-        return ResponseEntity.ok().headers(headers).body(eventos);
+        return ResponseEntity.ok().body(response);
     }
+
 
     @GetMapping("/evento/{id}")
     public Evento obtenerUno(@PathVariable Long id) {
