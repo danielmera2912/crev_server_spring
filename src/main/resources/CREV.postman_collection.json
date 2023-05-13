@@ -13,7 +13,7 @@
 					"name": "GET",
 					"item": [
 						{
-							"name": "GET ALL",
+							"name": "GET Primera Pagina",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true,
 								"disabledSystemHeaders": {}
@@ -29,13 +29,54 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/usuario",
+									"raw": "localhost:8080/usuario?page=0",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Segunda Pagina",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/usuario?page=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
 									]
 								}
 							},
