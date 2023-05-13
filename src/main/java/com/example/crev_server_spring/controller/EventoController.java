@@ -5,6 +5,8 @@ import com.example.crev_server_spring.modelo.Equipo;
 import com.example.crev_server_spring.modelo.Evento;
 import com.example.crev_server_spring.service.EventoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +18,22 @@ public class EventoController {
     private final EventoService eventoService;
 
     @GetMapping("/evento")
-    public List<Evento> obtenerTodos() {
-        List<Evento> result =  eventoService.findAll();
-        if(result.isEmpty()){
+    public ResponseEntity<List<Evento>> obtenerTodos(
+            @RequestParam(defaultValue = "0") Integer page) {
+        int size = 10; //cambiar el valor predeterminado del tamaño a 10
+
+        Page<Evento> eventosPage = eventoService.findAllPaginated(page, size);
+        List<Evento> eventos = eventosPage.getContent();
+
+        if (eventos.isEmpty()) {
             throw new EventoNotFoundException();
         }
-        return result;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("totalPages", Integer.toString(eventosPage.getTotalPages()));
+        headers.add("currentPage", Integer.toString(eventosPage.getNumber()));
+
+        return ResponseEntity.ok().headers(headers).body(eventos);
     }
 
     @GetMapping("/evento/{id}")
