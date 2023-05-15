@@ -45,16 +45,17 @@ public class Evento {
     @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
 
-    public List<Usuario> getUsuarios() {
+    public List<UsuarioEventoDTO> getUsuarios() {
         List<UsuarioEvento> eventoUsuariosOrdenados = eventoUsuarios.stream()
                 .sorted(Comparator.comparingLong(UsuarioEvento::getId))
                 .collect(Collectors.toList());
-        List<Usuario> usuarios = new ArrayList<>();
+        List<UsuarioEventoDTO> usuarios = new ArrayList<>();
         for (UsuarioEvento eu : eventoUsuariosOrdenados) {
-            usuarios.add(eu.getUsuario());
+            usuarios.add(new UsuarioEventoDTO(eu.getUsuario()));
         }
         return usuarios;
     }
+
 
 
     public List<Equipo> getEquipos() {

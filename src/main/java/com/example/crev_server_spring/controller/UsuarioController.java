@@ -6,10 +6,15 @@ import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
-
+import org.apache.commons.codec.digest.DigestUtils;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
-
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
 @RestController
 @RequiredArgsConstructor
 public class UsuarioController {
@@ -60,11 +65,13 @@ public class UsuarioController {
 
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
-            return usuario.getClave().equals(clave);
+            String storedHashedPassword = usuario.getClave();
+            return BCrypt.checkpw(clave, storedHashedPassword);
         }
 
         return false;
     }
+
     @GetMapping("/usuario/existeCorreo")
     public boolean existeCorreo(@RequestParam String correo) {
         Optional<Usuario> usuarioOptional = usuarioService.findByCorreo(correo);
@@ -80,21 +87,44 @@ public class UsuarioController {
         return usuarioService.findByNombreContaining(nombre);
     }
     @PostMapping("/usuario")
-    public Usuario newUsuario(@RequestBody Usuario newUsuario){
+    public Usuario newUsuario(@RequestBody Usuario newUsuario) {
         newUsuario.setRol(Usuario.Rol.USER);
+        String hashedPassword = BCrypt.hashpw(newUsuario.getClave(), BCrypt.gensalt());
+        newUsuario.setClave(hashedPassword);
         return usuarioService.save(newUsuario);
     }
 
-
     @PutMapping("/usuario/{id}")
-    public Usuario updateUsuario(@RequestBody Usuario updateUsuario, @PathVariable Long id){
+    public Usuario updateUsuario(@RequestBody Usuario updateUsuario, @PathVariable Long id) {
         if (usuarioService.existsById(id)) {
             updateUsuario.setId(id);
+            String hashedPassword = BCrypt.hashpw(updateUsuario.getClave(), BCrypt.gensalt());
+            updateUsuario.setClave(hashedPassword);
             return usuarioService.save(updateUsuario);
         } else {
             throw new UsuarioNotFoundException(id);
         }
     }
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] hashBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+
+            // Convert the byte array to hexadecimal representation
+            StringBuilder hexStringBuilder = new StringBuilder();
+            for (byte b : hashBytes) {
+                hexStringBuilder.append(String.format("%02x", b));
+            }
+            String hash = hexStringBuilder.toString();
+
+            return hash;
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception accordingly
+            return null;
+        }
+    }
+
+
 
     @DeleteMapping("/usuario/{id}")
     public Usuario deleteUsuario(@PathVariable Long id) {

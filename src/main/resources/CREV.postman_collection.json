@@ -158,7 +158,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"Pepitogrillo2\",\r\n    \"fechaNacimiento\": \"1990-01-01\",\r\n    \"avatar\": \"https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600\",\r\n    \"clave\": \"fe4564bf242c244d704ee512ef6a8ea12abf75f7\",\r\n    \"correo\": \"pepitogrillo2@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"nombre\": \"Pepitogrillo\",\r\n    \"fechaNacimiento\": \"1990-01-01\",\r\n    \"avatar\": \"https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600\",\r\n    \"clave\": \"Prueba123\",\r\n    \"correo\": \"pepitogrillo@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -217,7 +217,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"nombre\": \"Pepitogrillo\",\r\n        \"fechaNacimiento\": \"1930-05-05\",\r\n        \"avatar\": \"https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600\",\r\n        \"clave\": \"fe4564bf242c244d704ee512ef6a8ea12abf75f7\",\r\n        \"correo\": \"pepitogrillo@gmail.com\"\r\n    }",
+									"raw": "{\r\n        \"nombre\": \"Pepitogrillo\",\r\n        \"fechaNacimiento\": \"1930-05-05\",\r\n        \"avatar\": \"https://images.pexels.com/photos/5609026/pexels-photo-5609026.jpeg?auto=compress&cs=tinysrgb&w=600\",\r\n        \"clave\": \"Prueba123\",\r\n        \"correo\": \"pepitogrillo@gmail.com\"\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -225,14 +225,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/14",
+									"raw": "localhost:8080/usuario/13",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"14"
+										"13"
 									]
 								}
 							},
@@ -375,7 +375,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/usuario/login?correo=maria@gmail.com&clave=clave2",
+									"raw": "http://localhost:8080/usuario/login?correo=olaa@gmail.com&clave=Prueba123",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -388,11 +388,11 @@
 									"query": [
 										{
 											"key": "correo",
-											"value": "maria@gmail.com"
+											"value": "olaa@gmail.com"
 										},
 										{
 											"key": "clave",
-											"value": "clave2"
+											"value": "Prueba123"
 										}
 									]
 								}

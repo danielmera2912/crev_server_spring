@@ -14,7 +14,7 @@ public class EventoConUsuariosDTO {
     private Integer puntosLocal;
     private Integer puntosVisitante;
     private String estado;
-    private List<Usuario> usuarios;
+    private List<UsuarioEventoDTO> usuarios;
 
     public EventoConUsuariosDTO(Evento evento) {
         this.id = evento.getId();
