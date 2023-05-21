@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UsuarioEventoDTO {
     private Long id;
-    private String nombre;
+    private String username;
     private LocalDate fechaNacimiento;
     private String avatar;
     private String correo;
@@ -24,7 +24,7 @@ public class UsuarioEventoDTO {
     // Constructor adicional para convertir un objeto Usuario a UsuarioEventoDTO
     public UsuarioEventoDTO(Usuario usuario) {
         this.id = usuario.getId();
-        this.nombre = usuario.getUsername();
+        this.username = usuario.getUsername();
         this.fechaNacimiento = usuario.getFechaNacimiento();
         this.avatar = usuario.getAvatar();
         this.correo = usuario.getCorreo();
