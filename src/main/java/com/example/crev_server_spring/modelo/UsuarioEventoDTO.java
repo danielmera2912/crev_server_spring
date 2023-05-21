@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -17,22 +17,18 @@ public class UsuarioEventoDTO {
     private LocalDate fechaNacimiento;
     private String avatar;
     private String correo;
-    private LocalDate fechaCreacion;
-    private Usuario.Rol rol;
+    private LocalDateTime fechaCreacion;
 
-    public enum Rol {
-        ADMIN,
-        USER
-    }
+    private UserRole role;
 
     // Constructor adicional para convertir un objeto Usuario a UsuarioEventoDTO
     public UsuarioEventoDTO(Usuario usuario) {
         this.id = usuario.getId();
-        this.nombre = usuario.getNombre();
+        this.nombre = usuario.getUsername();
         this.fechaNacimiento = usuario.getFechaNacimiento();
         this.avatar = usuario.getAvatar();
         this.correo = usuario.getCorreo();
-        this.fechaCreacion = usuario.getFechaCreacion();
-        this.rol = usuario.getRol();
+        this.fechaCreacion = usuario.getCreatedAt();
+        this.role = usuario.getRole();
     }
 }

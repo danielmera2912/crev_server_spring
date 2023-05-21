@@ -1,24 +1,29 @@
 package com.example.crev_server_spring.controller;
 
+import com.example.crev_server_spring.dto.CreateUserRequest;
+import com.example.crev_server_spring.dto.GetUserDto;
+import com.example.crev_server_spring.dto.UserDtoConverter;
 import com.example.crev_server_spring.error.UsuarioNotFoundException;
 import com.example.crev_server_spring.modelo.Usuario;
+import com.example.crev_server_spring.repos.UsuarioRepository;
 import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
-import org.apache.commons.codec.digest.DigestUtils;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
 @RestController
 @RequiredArgsConstructor
 public class UsuarioController {
     private final UsuarioService usuarioService;
+    private final UserDtoConverter userDtoConverter;
+    private final UsuarioRepository usuarioRepository;
+
     @GetMapping("/usuario")
     public ResponseEntity<Map<String, Object>> obtenerTodos(@RequestParam(defaultValue = "0") Integer page) {
         int size = 9;
@@ -65,7 +70,7 @@ public class UsuarioController {
 
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
-            String storedHashedPassword = usuario.getClave();
+            String storedHashedPassword = usuario.getPassword();
             return BCrypt.checkpw(clave, storedHashedPassword);
         }
 
@@ -78,14 +83,21 @@ public class UsuarioController {
         return usuarioOptional.isPresent();
     }
     @GetMapping("/usuario/existeNombre")
-    public boolean existeNombre(@RequestParam String nombre) {
-        Optional<Usuario> usuarioOptional = usuarioService.findByNombre(nombre);
+    public boolean existeNombre(@RequestParam String username) {
+        Optional<Usuario> usuarioOptional = usuarioService.findByUsername(username);
         return usuarioOptional.isPresent();
     }
     @GetMapping("/usuario/buscarPorNombre/{nombre}")
-    public List<Usuario> buscarPorNombre(@PathVariable String nombre) {
-        return usuarioService.findByNombreContaining(nombre);
+    public List<Usuario> buscarPorNombre(@PathVariable String username) {
+        return usuarioService.findByUsernameContaining(username);
     }
+    @PostMapping("/usuario")
+    public ResponseEntity<GetUserDto> newUsuario(@RequestBody CreateUserRequest newUser){
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                userDtoConverter.convertUsuarioToGetUserDto(
+                        usuarioService.save(newUser)));
+    }
+    /*
     @PostMapping("/usuario")
     public Usuario newUsuario(@RequestBody Usuario newUsuario) {
         newUsuario.setRol(Usuario.Rol.USER);
@@ -93,18 +105,23 @@ public class UsuarioController {
         newUsuario.setClave(hashedPassword);
         return usuarioService.save(newUsuario);
     }
-
+     */
+    @PreAuthorize("@usuarioRepository.findUsernameById(#id) == authentication.principal.getName()")
     @PutMapping("/usuario/{id}")
-    public Usuario updateUsuario(@RequestBody Usuario updateUsuario, @PathVariable Long id) {
-        if (usuarioService.existsById(id)) {
-            updateUsuario.setId(id);
-            String hashedPassword = BCrypt.hashpw(updateUsuario.getClave(), BCrypt.gensalt());
-            updateUsuario.setClave(hashedPassword);
-            return usuarioService.save(updateUsuario);
+    public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario user) {
+        Optional<Usuario> userCurrent = usuarioService.findById(id);
+        if (userCurrent.isPresent()) {
+            user.setId(id);
+            user.setCreatedAt(userCurrent.get().getCreatedAt());
+            Usuario userUpdated = usuarioService.modify(user);
+            return new ResponseEntity<>(userUpdated, HttpStatus.OK);
         } else {
             throw new UsuarioNotFoundException(id);
         }
     }
+
+
+
     private String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");

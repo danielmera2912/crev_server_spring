@@ -23,14 +23,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByNombre(username)
+        Usuario usuario = usuarioRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
 
         return org.springframework.security.core.userdetails.User.builder()
-                .username(usuario.getNombre())
-                .password(usuario.getClave())
+                .username(usuario.getUsername())
+                .password(usuario.getPassword())
                 .authorities(authorities)
                 .build();
     }
