@@ -53,6 +53,7 @@ public class UsuarioService {
     }
     public Usuario modify(Usuario usuario){
         usuario.setUpdatedAt(LocalDateTime.now());
+        usuario.setRole(UserRole.USER);
         return usuarioRepository.save(usuario);
     }
     public Optional<Usuario> findByUsername(String username) {

@@ -60,6 +60,7 @@ public class AuthenticationController {
                 .correo(user.getCorreo())
                 .username(user.getUsername())
                 .avatar(user.getAvatar())
+                .id(user.getId())
                 .token(jwtToken)
                 .build();
 

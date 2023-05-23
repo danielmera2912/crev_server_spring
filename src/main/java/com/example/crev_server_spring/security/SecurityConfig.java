@@ -53,6 +53,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/usuario").permitAll()
+                .antMatchers(HttpMethod.GET, "/evento").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario_equipo").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario_evento").permitAll()
+                .antMatchers(HttpMethod.GET, "/equipo").permitAll()
+                .antMatchers(HttpMethod.GET, "/ciudad").permitAll()
+                .antMatchers(HttpMethod.GET, "/deporte").permitAll()
+                .antMatchers(HttpMethod.GET, "/media").permitAll()
+                .antMatchers(HttpMethod.GET, "/media/{filename}").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuarios/{id}/eventos").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario/buscarPorNombre/{username}").permitAll()
+                .antMatchers(HttpMethod.GET, "/evento/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/evento/{id}/equipos").permitAll()
+                .antMatchers(HttpMethod.GET, "/equipo/{id}/usuarios").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario/existeNombre").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario/existeCorreo").permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);

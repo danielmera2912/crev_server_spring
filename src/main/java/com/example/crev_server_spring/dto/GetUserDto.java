@@ -11,4 +11,5 @@ public class GetUserDto {
     private String username;
     private String avatar;
     private String correo;
+    private Long id;
 }

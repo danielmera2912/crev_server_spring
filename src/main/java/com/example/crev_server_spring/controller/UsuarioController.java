@@ -87,7 +87,7 @@ public class UsuarioController {
         Optional<Usuario> usuarioOptional = usuarioService.findByUsername(username);
         return usuarioOptional.isPresent();
     }
-    @GetMapping("/usuario/buscarPorNombre/{nombre}")
+    @GetMapping("/usuario/buscarPorNombre/{username}")
     public List<Usuario> buscarPorNombre(@PathVariable String username) {
         return usuarioService.findByUsernameContaining(username);
     }
@@ -97,16 +97,6 @@ public class UsuarioController {
                 userDtoConverter.convertUsuarioToGetUserDto(
                         usuarioService.save(newUser)));
     }
-    /*
-    @PostMapping("/usuario")
-    public Usuario newUsuario(@RequestBody Usuario newUsuario) {
-        newUsuario.setRol(Usuario.Rol.USER);
-        String hashedPassword = BCrypt.hashpw(newUsuario.getClave(), BCrypt.gensalt());
-        newUsuario.setClave(hashedPassword);
-        return usuarioService.save(newUsuario);
-    }
-     */
-    @PreAuthorize("@usuarioRepository.findUsernameById(#id) == authentication.principal.getName()")
     @PutMapping("/usuario/{id}")
     public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario user) {
         Optional<Usuario> userCurrent = usuarioService.findById(id);
