@@ -56,7 +56,7 @@ public class Usuario implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "rol")
-    private UserRole role;
+    private UserRole role = UserRole.USER;
 
     @CreatedDate
     @Column(name = "fecha_creacion")

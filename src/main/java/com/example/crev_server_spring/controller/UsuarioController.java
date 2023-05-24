@@ -10,13 +10,15 @@ import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import com.example.crev_server_spring.dto.GetUserDto;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 public class UsuarioController {
@@ -46,18 +48,26 @@ public class UsuarioController {
         // Obtiene los usuarios para la página solicitada
         List<Usuario> usuariosPaginados = usuarios.subList(startIndex, endIndex);
 
+        // Convierte los usuarios a DTOs
+        List<GetUserDto> usuariosDto = usuariosPaginados.stream()
+                .map(userDtoConverter::convertUsuarioToGetUserDto)
+                .collect(Collectors.toList());
+
         // Crea la respuesta con los usuarios paginados y la información de paginación
         Map<String, Object> response = new HashMap<>();
-        response.put("usuarios", usuariosPaginados);
+        response.put("usuarios", usuariosDto);
         response.put("totalPages", (int) Math.ceil((double) usuarios.size() / size));
         response.put("currentPage", page);
 
         return ResponseEntity.ok().body(response);
     }
 
+
     @GetMapping("/usuario/{id}")
-    public Usuario obtenerUno(@PathVariable Long id) {
-        return usuarioService.findById(id).orElseThrow(() -> new UsuarioNotFoundException(id));
+    public GetUserDto obtenerUno(@PathVariable Long id) {
+        Usuario usuario = usuarioService.findById(id)
+                .orElseThrow(() -> new UsuarioNotFoundException(id));
+        return userDtoConverter.convertUsuarioToGetUserDto(usuario);
     }
     @GetMapping("/usuario/buscarPorCorreo/{correo}")
     public Usuario obtenerPorCorreo(@PathVariable String correo) {

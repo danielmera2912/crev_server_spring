@@ -51,11 +51,13 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El nombre del usuario ya existe");
         }
     }
-    public Usuario modify(Usuario usuario){
+    public Usuario modify(Usuario usuario) {
         usuario.setUpdatedAt(LocalDateTime.now());
         usuario.setRole(UserRole.USER);
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.save(usuario);
     }
+
     public Optional<Usuario> findByUsername(String username) {
         return usuarioRepository.findByUsername(username);
     }

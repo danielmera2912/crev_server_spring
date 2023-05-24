@@ -10,6 +10,8 @@ public class UserDtoConverter {
                 .username(usuario.getUsername())
                 .avatar(usuario.getAvatar())
                 .correo(usuario.getCorreo())
+                .id(usuario.getId())
+                .fechaNacimiento(usuario.getFechaNacimiento())
                 .build();
     }
 }

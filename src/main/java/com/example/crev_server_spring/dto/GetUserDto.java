@@ -2,6 +2,8 @@ package com.example.crev_server_spring.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,4 +14,5 @@ public class GetUserDto {
     private String avatar;
     private String correo;
     private Long id;
+    private LocalDate fechaNacimiento;
 }
