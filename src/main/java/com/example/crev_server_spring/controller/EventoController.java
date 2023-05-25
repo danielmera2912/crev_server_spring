@@ -41,9 +41,12 @@ public class EventoController {
 
 
     @GetMapping("/evento/{id}")
-    public Evento obtenerUno(@PathVariable Long id) {
-        return eventoService.findById(id).orElseThrow(() -> new EventoNotFoundException(id));
+    public ResponseEntity<Evento> obtenerUno(@PathVariable Long id) {
+        Evento evento = eventoService.findById(id)
+                .orElseThrow(() -> new EventoNotFoundException(id));
+        return ResponseEntity.ok().body(evento);
     }
+
 
     @PostMapping("/evento")
     public Evento newEvento(@RequestBody Evento newEvento){
