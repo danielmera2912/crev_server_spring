@@ -172,15 +172,66 @@ INSERT INTO crev.usuario (id, nombre, fecha_nacimiento, avatar, clave, correo, f
 
 
 -- Tabla ciudad: --
-INSERT INTO crev.ciudad (id, nombre) VALUES (1, 'Barcelona');
-INSERT INTO crev.ciudad (id, nombre) VALUES (2, 'Madrid');
-INSERT INTO crev.ciudad (id, nombre) VALUES (3, 'Bilbao');
-
+INSERT INTO crev.ciudad(nombre) VALUES
+                                    ('Álava'),
+                                    ('Albacete'),
+                                    ('Alicante'),
+                                    ('Almería'),
+                                    ('Asturias'),
+                                    ('Ávila'),
+                                    ('Badajoz'),
+                                    ('Barcelona'),
+                                    ('Burgos'),
+                                    ('Cáceres'),
+                                    ('Cádiz'),
+                                    ('Cantabria'),
+                                    ('Castellón'),
+                                    ('Ciudad Real'),
+                                    ('Córdoba'),
+                                    ('Cuenca'),
+                                    ('Gerona'),
+                                    ('Granada'),
+                                    ('Guadalajara'),
+                                    ('Guipúzcoa'),
+                                    ('Huelva'),
+                                    ('Huesca'),
+                                    ('Islas Balears'),
+                                    ('Jaén'),
+                                    ('La Coruña'),
+                                    ('La Rioja'),
+                                    ('Las Palmas'),
+                                    ('León'),
+                                    ('Lérida'),
+                                    ('Lugo'),
+                                    ('Madrid'),
+                                    ('Málaga'),
+                                    ('Murcia'),
+                                    ('Navarra'),
+                                    ('Orense'),
+                                    ('Palencia'),
+                                    ('Pontevedra'),
+                                    ('Salamanca'),
+                                    ('Santa Cruz de Tenerife'),
+                                    ('Segovia'),
+                                    ('Sevilla'),
+                                    ('Soria'),
+                                    ('Tarragona'),
+                                    ('Teruel'),
+                                    ('Toledo'),
+                                    ('Valencia'),
+                                    ('Valladolid'),
+                                    ('Vizcaya'),
+                                    ('Zamora'),
+                                    ('Zaragoza');
 -- Tabla deporte: --
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (1, 'Fútbol Sala', true);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (2, 'Baloncesto', true);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (3, 'Padel', false);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (4, 'Tenis', false);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (5, 'Esgrima', false);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (6, 'Boxeo', false);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (7, 'Golf', false);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (8, 'Voleibol', true);
 
 -- Tabla evento: --
 INSERT INTO crev.evento (id, hora, fecha, ciudad_id, deporte_id, estado, fecha_creacion) VALUES (1, '15:00', '2023-03-12', 1, 1, "EN CURSO", '2023-03-09');
