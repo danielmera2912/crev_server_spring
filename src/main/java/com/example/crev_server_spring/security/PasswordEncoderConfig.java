@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class PasswordEncoderConfig {
+    // Hasheo de password
     @Bean
     public PasswordEncoder passwordEncoder()
     {

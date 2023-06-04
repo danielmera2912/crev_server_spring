@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Entity
 public class Evento {
+    // Modelo de evento
     @Id
     @GeneratedValue
     private Long id;

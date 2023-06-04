@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UsuarioEquipoService {
+    // Servicios de la relación de usuario con equipo
     @Autowired
     private UsuarioEquipoRepository usuarioEquipoRepository;
 

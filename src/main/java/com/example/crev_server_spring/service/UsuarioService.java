@@ -23,6 +23,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
+    // Servicios de usuario
     @Autowired
     private UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;

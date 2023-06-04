@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class CiudadNotFoundException extends RuntimeException{
-
+    // Errores de ciudad
     public CiudadNotFoundException(){
         super("No se pudo encontrar ninguna ciudad");
     }

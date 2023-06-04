@@ -15,6 +15,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Entity
 public class Ciudad {
+    // Modelo de ciudad
     @Id
     @GeneratedValue
     private Long id;

@@ -18,6 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class EventoService {
+    // Servicios de evento
     @Autowired
     private EventoRepository eventoRepository;
 

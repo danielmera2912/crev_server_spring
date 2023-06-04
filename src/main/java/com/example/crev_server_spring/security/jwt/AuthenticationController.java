@@ -22,6 +22,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 public class AuthenticationController {
+    // Controlador de la autenticación
     private final AuthenticationManager authenticationManager;
     private final JwtProvider tokenProvider;
     private final UserDtoConverter converter;

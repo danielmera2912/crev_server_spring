@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioEventoDTO {
+    // DTO de la relación de usuario con evento
     private Long id;
     private String username;
     private LocalDate fechaNacimiento;

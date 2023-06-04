@@ -18,6 +18,7 @@ public class MediaController {
     public MediaController(StorageService storageService) {
         this.storageService = storageService;
     }
+    // Obtener una imagen
     @GetMapping("/media/{filename:.+}")
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
         Resource file = storageService.loadAsResource(filename);
@@ -27,7 +28,7 @@ public class MediaController {
         return ResponseEntity.ok().headers(headers).body(file);
     }
 
-
+    // Subir una imagen
     @PostMapping("/media/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         String fileName = storageService.store(file);

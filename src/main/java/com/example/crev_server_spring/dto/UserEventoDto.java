@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEventoDto {
+    // DTO de UsuarioEvento
     private Long id;
     private EventoDto evento;
     private String username;

@@ -13,6 +13,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class EquipoService{
+    // Servicios de equipo
     @Autowired
     private EquipoRepository equipoRepository;
 

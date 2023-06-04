@@ -22,7 +22,7 @@ public class UsuarioEventoController {
     private final UsuarioEventoService usuarioEventoService;
     private final UsuarioService usuarioService;
     private final EventoService eventoService;
-
+    // Obtener todas las relaciones de usuario con evento
     @GetMapping("/usuario_evento")
     public List<UsuarioEvento> obtenerTodos() {
         List<UsuarioEvento> result = usuarioEventoService.findAll();
@@ -31,12 +31,12 @@ public class UsuarioEventoController {
         }
         return result;
     }
-
+    // Obtener una relación de usuario con evento
     @GetMapping("/usuario_evento/{id}")
     public UsuarioEvento obtenerUno(@PathVariable Long id) {
         return usuarioEventoService.findById(id).orElseThrow(() -> new UsuarioEventoNotFoundException(id));
     }
-
+    // Obtener las relaciones de usuario con evento en el que le pasas la id de un evento
     @GetMapping("/usuario_evento/evento/{id}")
     public List<UsuarioEvento> obtenerPorEventoId(@PathVariable Long id) {
         List<UsuarioEvento> result = usuarioEventoService.findByEventoId(id);
@@ -45,12 +45,12 @@ public class UsuarioEventoController {
         }
         return result;
     }
-
+    // Crear una relación de usuario con evento
     @PostMapping("/usuario_evento")
     public UsuarioEvento newUsuarioEvento(@RequestBody UsuarioEvento newUsuarioEvento) {
         return usuarioEventoService.save(newUsuarioEvento);
     }
-
+    // Modificar una relación de usuario con evento
     @PutMapping("/usuario_evento/{id}")
     public UsuarioEvento updateUsuario(@RequestBody UsuarioEvento updateUsuarioEvento, @PathVariable Long id) {
         if (usuarioEventoService.existsById(id)) {
@@ -60,7 +60,7 @@ public class UsuarioEventoController {
             throw new UsuarioEventoNotFoundException(id);
         }
     }
-
+    // Eliminar una relación de usuario con evento
     @DeleteMapping("/usuario_evento/{id}")
     public UsuarioEvento deleteUsuario(@PathVariable Long id) {
         if (usuarioEventoService.existsById(id)) {
@@ -71,7 +71,7 @@ public class UsuarioEventoController {
             throw new UsuarioEventoNotFoundException(id);
         }
     }
-
+    // Obtener todos los eventos según la id de un usuario
     @GetMapping("/usuarios/{usuarioId}/eventos")
     public List<Evento> obtenerEventosPorUsuario(@PathVariable Long usuarioId) {
         Usuario usuario = usuarioService.findById(usuarioId)

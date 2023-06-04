@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class JwtUserResponse extends GetUserDto {
+    // Generación del token
     private String token;
 
     @Builder(builderMethodName="jwtUserResponseBuilder")

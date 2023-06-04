@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class UsuarioEquipoNotFoundException extends RuntimeException{
-
+    // Errores de la relación de Usuario con Equipo
     public UsuarioEquipoNotFoundException(){
         super("No se pudo encontrar ninguna relación para usuario con equipo");
     }

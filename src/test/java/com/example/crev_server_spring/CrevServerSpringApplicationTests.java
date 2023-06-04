@@ -27,7 +27,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CrevServerSpringApplicationTests {
-
+    // Crear, obtener y verificación de un usuario
     @Test
     public void testNewUsuario() {
         // Crear instancias de las clases necesarias
@@ -74,6 +74,7 @@ public class CrevServerSpringApplicationTests {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(userDto, response.getBody());
     }
+    // Crear, obtener y verificación de un evento
     @Test
     public void testObtenerEvento() {
         // Crear una instancia del servicio de evento simulado
@@ -98,6 +99,7 @@ public class CrevServerSpringApplicationTests {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(evento, response.getBody());
     }
+    // Crear, obtener y verificación de un deporte
     @Test
     public void testObtenerDeporte() {
         // Crear una instancia del servicio de deporte simulado
@@ -121,7 +123,7 @@ public class CrevServerSpringApplicationTests {
         // Verificar el resultado
         assertEquals(deporte, response);
     }
-
+    // Crear, obtener y verificación de una ciudad
     @Test
     public void testObtenerCiudad() {
         // Crear una instancia del servicio de ciudad simulado

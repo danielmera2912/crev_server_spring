@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class DeporteNotFoundException extends RuntimeException{
-
+    // Errores de deporte
     public DeporteNotFoundException(){
         super("No se pudo encontrar ningún deporte");
     }

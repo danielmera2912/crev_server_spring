@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EquipoController {
     private final EquipoService equipoService;
+    // Obtener equipos
     @GetMapping("/equipo")
     public List<Equipo> obtenerTodos() {
         List<Equipo> result =  equipoService.findAll();
@@ -23,11 +24,12 @@ public class EquipoController {
         }
         return result;
     }
-
+    // Obtener un equipo
     @GetMapping("/equipo/{id}")
     public Equipo obtenerUno(@PathVariable Long id) {
         return equipoService.findById(id).orElseThrow(() -> new EquipoNotFoundException(id));
     }
+    // Obtener los usuarios de un equipo
     @GetMapping("/equipo/{id}/usuarios")
     public List<Usuario> obtenerUsuariosDeEquipo(@PathVariable Long id) {
         Equipo equipo = equipoService.findById(id)
@@ -38,6 +40,7 @@ public class EquipoController {
                 .map(ue -> ue.getUsuario())
                 .collect(Collectors.toList());
     }
+    // Obtener de un equipo, la colección de ids de UsuarioEquipo
     @GetMapping("/equipo/{id}/usuario-equipo-ids")
     public List<Long> obtenerUsuarioEquipoIdsDeEquipo(@PathVariable Long id) {
         Equipo equipo = equipoService.findById(id)
@@ -45,12 +48,12 @@ public class EquipoController {
         return equipo.getUsuarioEquipoIds();
     }
 
-
+    // Crear un nuevo equipo
     @PostMapping("/equipo")
     public Equipo newEquipo(@RequestBody Equipo newEquipo){
         return equipoService.save(newEquipo);
     }
-
+    // Modificar un equipo
     @PutMapping("/equipo/{id}")
     public Equipo updateEquipo(@RequestBody Equipo updateEquipo, @PathVariable Long id){
         if (equipoService.existsById(id)) {
@@ -60,7 +63,7 @@ public class EquipoController {
             throw new EquipoNotFoundException(id);
         }
     }
-
+    // Eliminar un equipo
     @DeleteMapping("/equipo/{id}")
     public Equipo deleteEquipo(@PathVariable Long id) {
         if(equipoService.existsById(id)){

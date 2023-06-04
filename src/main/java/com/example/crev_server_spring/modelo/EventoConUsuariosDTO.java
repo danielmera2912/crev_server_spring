@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class EventoConUsuariosDTO {
+    // Modelo de la relación de evento con usuarios
     private Long id;
     private String hora;
     private String fecha;

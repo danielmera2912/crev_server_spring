@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CrevServerSpringApplication {
-
+    // Aplicación
     public static void main(String[] args) {
         SpringApplication.run(CrevServerSpringApplication.class, args);
     }

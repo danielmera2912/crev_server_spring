@@ -15,6 +15,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//DTO de evento
 public class EventoDto {
     private Long id;
     private String hora;

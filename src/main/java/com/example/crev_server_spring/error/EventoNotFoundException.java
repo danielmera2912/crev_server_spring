@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class EventoNotFoundException extends RuntimeException{
-
+    // Errores de evento
     public EventoNotFoundException(){
         super("No se pudo encontrar ningun evento");
     }

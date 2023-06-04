@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DeporteController {
     private final DeporteService deporteService;
+    // Obtener deportes
     @GetMapping("/deporte")
     public List<Deporte> obtenerTodos() {
         List<Deporte> result =  deporteService.findAll();
@@ -20,17 +21,17 @@ public class DeporteController {
         }
         return result;
     }
-
+    // Obtener un deporte
     @GetMapping("/deporte/{id}")
     public Deporte obtenerUno(@PathVariable Long id) {
         return deporteService.findById(id).orElseThrow(() -> new DeporteNotFoundException(id));
     }
-
+    // Crear un nuevo deporte
     @PostMapping("/deporte")
     public Deporte newDeporte(@RequestBody Deporte newDeporte){
         return deporteService.save(newDeporte);
     }
-
+    // Modificar un deporte
     @PutMapping("/deporte/{id}")
     public Deporte updateDeporte(@RequestBody Deporte updateDeporte, @PathVariable Long id){
         if (deporteService.existsById(id)) {
@@ -40,7 +41,7 @@ public class DeporteController {
             throw new DeporteNotFoundException(id);
         }
     }
-
+    // Eliminar un deporte
     @DeleteMapping("/deporte/{id}")
     public Deporte deleteDeporte(@PathVariable Long id) {
         if(deporteService.existsById(id)){

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserDtoConverter {
+    // Conversión de un usuario para DTO
     public GetUserDto convertUsuarioToGetUserDto(Usuario usuario) {
         return GetUserDto.builder()
                 .username(usuario.getUsername())

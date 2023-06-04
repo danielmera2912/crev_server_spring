@@ -4,5 +4,5 @@ import com.example.crev_server_spring.modelo.Equipo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EquipoRepository extends JpaRepository<Equipo, Long> {
-
+    // Repositorio de equipo
 }

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class GetUserDto {
+    // DTO de cuando se realiza un GET sobre usuario
     private String username;
     private String avatar;
     private String correo;

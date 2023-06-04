@@ -15,6 +15,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Entity
 public class Deporte {
+    // Modelo de deporte
     @Id
     @GeneratedValue
     private Long id;

@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "usuario_has_equipo")
 public class UsuarioEquipo {
+    // Modelo de la relación de usuario con equipo
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

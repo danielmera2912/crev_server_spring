@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class DeporteService {
+    // Servicios de deporte
     @Autowired
     private DeporteRepository deporteRepository;
 

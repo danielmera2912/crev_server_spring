@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+// DTO para la creación de un usuario
 public class CreateUserRequest {
     private String username, password, avatar, correo, fechaNacimiento;
 }

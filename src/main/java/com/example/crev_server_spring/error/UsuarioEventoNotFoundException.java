@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class UsuarioEventoNotFoundException extends RuntimeException{
-
+    // Errores de la relación de usuario con Evento
     public UsuarioEventoNotFoundException(){
         super("No se pudo encontrar ninguna relación usuario con evento");
     }

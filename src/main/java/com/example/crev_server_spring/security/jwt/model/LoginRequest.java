@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginRequest {
-
+    // Cuerpo para el login
     @NotBlank
     private String username;
     @NotBlank

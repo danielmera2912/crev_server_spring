@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 @RestControllerAdvice
 public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
-
+    // Errores globales
     @ExceptionHandler(EquipoNotFoundException.class)
     public ResponseEntity<ApiError> handleBeerNoEncontrado(EquipoNotFoundException ex){
         ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getMessage());

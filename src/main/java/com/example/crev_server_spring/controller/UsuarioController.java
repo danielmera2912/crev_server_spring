@@ -25,7 +25,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final UserDtoConverter userDtoConverter;
     private final UsuarioRepository usuarioRepository;
-
+    // Obtener usuarios
     @GetMapping("/usuario")
     public ResponseEntity<Map<String, Object>> obtenerTodos(@RequestParam(defaultValue = "0") Integer page) {
         int size = 9;
@@ -62,18 +62,19 @@ public class UsuarioController {
         return ResponseEntity.ok().body(response);
     }
 
-
+    // Obtener un usuario
     @GetMapping("/usuario/{id}")
     public GetUserDto obtenerUno(@PathVariable Long id) {
         Usuario usuario = usuarioService.findById(id)
                 .orElseThrow(() -> new UsuarioNotFoundException(id));
         return userDtoConverter.convertUsuarioToGetUserDto(usuario);
     }
+    // Obtener un usuario mediante un correo
     @GetMapping("/usuario/buscarPorCorreo/{correo}")
     public Usuario obtenerPorCorreo(@PathVariable String correo) {
         return usuarioService.findByCorreo(correo).orElseThrow(() -> new UsuarioNotFoundException(correo));
     }
-
+    // Obtener si cierto login con un correo y clave existe o no
     @GetMapping("/usuario/login")
     public boolean loginUsuario(@RequestParam String correo, @RequestParam String clave) {
         Optional<Usuario> usuarioOptional = usuarioService.findByCorreo(correo);
@@ -86,12 +87,13 @@ public class UsuarioController {
 
         return false;
     }
-
+    // Comprueba si un correo existe o no
     @GetMapping("/usuario/existeCorreo")
     public boolean existeCorreo(@RequestParam String correo) {
         Optional<Usuario> usuarioOptional = usuarioService.findByCorreo(correo);
         return usuarioOptional.isPresent();
     }
+    // Obtiene si un nombre existe
     @GetMapping("/usuario/existeNombre")
     public boolean existeNombre(@RequestParam String username) {
         Optional<Usuario> usuarioOptional = usuarioService.findByUsername(username);

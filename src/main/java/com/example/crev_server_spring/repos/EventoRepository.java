@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EventoRepository extends JpaRepository<Evento, Long> {
-
+    // Repositorio de evento
     List<Evento> findByCiudadNombreAndDeporteNombre(String ciudad, String deporte);
 
     List<Evento> findByCiudadNombre(String ciudad);

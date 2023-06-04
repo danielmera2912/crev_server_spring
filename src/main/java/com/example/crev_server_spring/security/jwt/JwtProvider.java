@@ -14,7 +14,7 @@ import java.util.Date;
 @Component
 @Log
 public class JwtProvider {
-
+    // Controlador del token
     public static final String TOKEN_HEADER = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String TOKEN_TYPE = "JWT";

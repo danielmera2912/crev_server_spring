@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Entity
 public class Equipo {
+    // Modelo de equipo
     @Id
     @GeneratedValue
     private Long id;

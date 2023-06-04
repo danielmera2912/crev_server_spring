@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 @Service
 public class FileSystemStorageService implements StorageService{
+    // Servicios de guardado de imagenes
     @Value("${media.location}")
     private String mediaLocation;
 

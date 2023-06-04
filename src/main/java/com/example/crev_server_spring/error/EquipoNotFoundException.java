@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class EquipoNotFoundException extends RuntimeException{
-
+    // Errores de equipo
     public EquipoNotFoundException(){
         super("No se pudo encontrar ningun equipo");
     }

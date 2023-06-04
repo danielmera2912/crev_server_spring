@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
+    // Servicios de registro de usuario
     private final UsuarioService userService;
 
     public CustomUserDetailsService(UsuarioService userService) {

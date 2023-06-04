@@ -30,6 +30,7 @@ import java.util.Collections;
 @Table(name = "usuario")
 @JsonIgnoreProperties(value = {"usuario"})
 public class Usuario implements UserDetails {
+    // Modelo de Usuario
     @Id
     @GeneratedValue
     private Long id;

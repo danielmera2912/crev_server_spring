@@ -18,7 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class EventoController {
     private final EventoService eventoService;
-
+    // Obtener los eventos
     @GetMapping("/evento")
     public ResponseEntity<Map<String, Object>> obtenerTodos(
             @RequestParam(defaultValue = "0") Integer page) {
@@ -39,7 +39,7 @@ public class EventoController {
         return ResponseEntity.ok().body(response);
     }
 
-
+    // Obtener un evento
     @GetMapping("/evento/{id}")
     public ResponseEntity<Evento> obtenerUno(@PathVariable Long id) {
         Evento evento = eventoService.findById(id)
@@ -47,13 +47,14 @@ public class EventoController {
         return ResponseEntity.ok().body(evento);
     }
 
-
+    // Crear un nuevo evento
     @PostMapping("/evento")
     public Evento newEvento(@RequestBody Evento newEvento){
         // Aquí establecemos el valor por defecto para el campo "estado"
         newEvento.setEstado("EN CURSO");
         return eventoService.save(newEvento);
     }
+    // Obtener los equipos de un evento
     @GetMapping("/evento/{id}/equipos")
     public ResponseEntity<List<Equipo>> getEquiposPorEvento(@PathVariable Long id) {
         Evento evento = eventoService.findById(id)
@@ -63,7 +64,7 @@ public class EventoController {
 
         return ResponseEntity.ok().body(equipos);
     }
-
+    // Modificar un evento
     @PutMapping("/evento/{id}")
     public Evento updateEvento(@RequestBody Evento updateEvento, @PathVariable Long id) {
         if (eventoService.existsById(id)) {
@@ -86,7 +87,7 @@ public class EventoController {
     }
 
 
-
+    // Eliminar un evento
     @DeleteMapping("/evento/{id}")
     public Evento deleteEvento(@PathVariable Long id) {
         if(eventoService.existsById(id)){
@@ -97,6 +98,7 @@ public class EventoController {
             throw new EventoNotFoundException(id);
         }
     }
+    // Buscar un evento según la ciudad y el deporte
     @GetMapping("/evento/busqueda")
     public List<Evento> buscarEventos(
             @RequestParam(required = false) String ciudad,

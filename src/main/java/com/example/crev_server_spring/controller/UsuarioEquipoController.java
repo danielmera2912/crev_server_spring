@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsuarioEquipoController {
     private final UsuarioEquipoService usuarioEquipoService;
+    // Obtener todas las relaciones de usuario con equipo
     @GetMapping("/usuario_equipo")
     public List<UsuarioEquipo> obtenerTodos() {
         List<UsuarioEquipo> result =  usuarioEquipoService.findAll();
@@ -25,16 +26,17 @@ public class UsuarioEquipoController {
         }
         return result;
     }
-
+    // Obtener una relación de usuario con equipo
     @GetMapping("/usuario_equipo/{id}")
     public UsuarioEquipo obtenerUno(@PathVariable Long id) {
         return usuarioEquipoService.findById(id).orElseThrow(() -> new UsuarioEquipoNotFoundException(id));
     }
+    // Crear una relación de usuario con equipo
     @PostMapping("/usuario_equipo")
     public UsuarioEquipo newUsuarioEquipo(@RequestBody UsuarioEquipo newUsuarioEquipo){
         return usuarioEquipoService.save(newUsuarioEquipo);
     }
-
+    // Modificar una relación de usuario con equipo
     @PutMapping("/usuario_equipo/{id}")
     public UsuarioEquipo updateUsuario(@RequestBody UsuarioEquipo updateUsuario, @PathVariable Long id){
         if (usuarioEquipoService.existsById(id)) {
@@ -44,7 +46,7 @@ public class UsuarioEquipoController {
             throw new UsuarioEquipoNotFoundException(id);
         }
     }
-
+    // Eliminar una relación de usuario con equipo
     @DeleteMapping("/usuario_equipo/{id}")
     public UsuarioEquipo deleteUsuario(@PathVariable Long id) {
         if(usuarioEquipoService.existsById(id)){

@@ -17,6 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "usuario_has_evento")
 public class UsuarioEvento {
+    // Modelo de relación de usuario con evento
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
