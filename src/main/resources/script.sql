@@ -226,7 +226,7 @@ INSERT INTO crev.ciudad(nombre) VALUES
 -- Tabla deporte: --
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (1, 'Fútbol Sala', true);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (2, 'Baloncesto', true);
-INSERT INTO crev.deporte (id, nombre, equipos) VALUES (3, 'Padel', false);
+INSERT INTO crev.deporte (id, nombre, equipos) VALUES (3, 'Pádel', false);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (4, 'Tenis', false);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (5, 'Esgrima', false);
 INSERT INTO crev.deporte (id, nombre, equipos) VALUES (6, 'Boxeo', false);
