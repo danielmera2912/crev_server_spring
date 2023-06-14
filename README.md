@@ -13,7 +13,7 @@ Java con Spring Boot, guarda scripts en MySQL, además de colecciones de peticio
 
 ## Despliegue local
 
-Una vez clonado y usando la rama local, se necesitará descargar la jsdk que te pide el idle, a continuación, puedes usar un docker o workbench para introducir los datos del [script](https://github.com/danielmera2912/crev_server_spring/blob/master/src/main/resources/script.sql), se deberá de usar usuario root, con password 1234, o modificar las properties para ajustarlo a tu configuración.
+Una vez clonado y usando la rama local, se necesitará descargar la jsdk que te pide el idle, a continuación, puedes usar un docker o workbench para introducir los datos del [script](https://github.com/danielmera2912/crev_server_spring/blob/master/src/main/resources/script.sql), se deberá usar [estas credenciales](https://github.com/danielmera2912/crev_server_spring/blob/local/src/main/resources/application.properties) para el contenedor docker o conexión en workbench.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/danielmera2912/crev_server/master/crev_logo.png" />
