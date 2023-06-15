@@ -86,18 +86,6 @@ public class EventoController {
         }
     }
 
-
-    // Eliminar un evento
-    @DeleteMapping("/evento/{id}")
-    public Evento deleteEvento(@PathVariable Long id) {
-        if(eventoService.existsById(id)){
-            Evento result = eventoService.findById(id).get();
-            eventoService.deleteById(id);
-            return result;
-        }else{
-            throw new EventoNotFoundException(id);
-        }
-    }
     // Buscar un evento según la ciudad y el deporte
     @GetMapping("/evento/busqueda")
     public List<Evento> buscarEventos(
@@ -124,6 +112,17 @@ public class EventoController {
             return eventos;
         } else {
             throw new IllegalArgumentException("Debe proporcionar al menos un parámetro de búsqueda");
+        }
+    }
+    // Eliminar un evento
+    @DeleteMapping("/evento/{id}")
+    public Evento deleteEvento(@PathVariable Long id) {
+        if(eventoService.existsById(id)){
+            Evento result = eventoService.findById(id).get();
+            eventoService.deleteById(id);
+            return result;
+        }else{
+            throw new EventoNotFoundException(id);
         }
     }
 
