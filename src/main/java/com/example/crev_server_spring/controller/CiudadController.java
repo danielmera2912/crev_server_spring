@@ -27,11 +27,15 @@ public class CiudadController {
         return ciudadService.findById(id).orElseThrow(() -> new CiudadNotFoundException(id));
     }
     // Crear una ciudad
+    /*
     @PostMapping("/ciudad")
     public Ciudad newUCiudad(@RequestBody Ciudad newUsuario){
         return ciudadService.save(newUsuario);
     }
+
+     */
     // Modificar una ciudad
+    /*
     @PutMapping("/ciudad/{id}")
     public Ciudad updateCiudad(@RequestBody Ciudad updateUsuario, @PathVariable Long id){
         if (ciudadService.existsById(id)) {
@@ -41,6 +45,8 @@ public class CiudadController {
             throw new CiudadNotFoundException(id);
         }
     }
+
+     */
     // Eliminar una ciudad
     /*
     @DeleteMapping("/ciudad/{id}")
