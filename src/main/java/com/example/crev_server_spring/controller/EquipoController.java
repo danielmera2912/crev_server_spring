@@ -64,6 +64,7 @@ public class EquipoController {
         }
     }
     // Eliminar un equipo
+    /*
     @DeleteMapping("/equipo/{id}")
     public Equipo deleteEquipo(@PathVariable Long id) {
         if(equipoService.existsById(id)){
@@ -74,4 +75,5 @@ public class EquipoController {
             throw new EquipoNotFoundException(id);
         }
     }
+     */
 }

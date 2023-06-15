@@ -60,17 +60,6 @@ public class UsuarioEventoController {
             throw new UsuarioEventoNotFoundException(id);
         }
     }
-    // Eliminar una relación de usuario con evento
-    @DeleteMapping("/usuario_evento/{id}")
-    public UsuarioEvento deleteUsuario(@PathVariable Long id) {
-        if (usuarioEventoService.existsById(id)) {
-            UsuarioEvento result = usuarioEventoService.findById(id).get();
-            usuarioEventoService.deleteById(id);
-            return result;
-        } else {
-            throw new UsuarioEventoNotFoundException(id);
-        }
-    }
     // Obtener todos los eventos según la id de un usuario
     @GetMapping("/usuarios/{usuarioId}/eventos")
     public List<Evento> obtenerEventosPorUsuario(@PathVariable Long usuarioId) {
@@ -98,7 +87,18 @@ public class UsuarioEventoController {
 
         return eventos;
     }
+    // Eliminar una relación de usuario con evento
+    /*
+    @DeleteMapping("/usuario_evento/{id}")
+    public UsuarioEvento deleteUsuario(@PathVariable Long id) {
+        if (usuarioEventoService.existsById(id)) {
+            UsuarioEvento result = usuarioEventoService.findById(id).get();
+            usuarioEventoService.deleteById(id);
+            return result;
+        } else {
+            throw new UsuarioEventoNotFoundException(id);
+        }
+    }
 
-
-
+     */
 }

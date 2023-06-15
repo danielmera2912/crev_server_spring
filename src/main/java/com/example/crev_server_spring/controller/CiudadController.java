@@ -42,6 +42,7 @@ public class CiudadController {
         }
     }
     // Eliminar una ciudad
+    /*
     @DeleteMapping("/ciudad/{id}")
     public Ciudad deleteCiudad(@PathVariable Long id) {
         if(ciudadService.existsById(id)){
@@ -52,4 +53,5 @@ public class CiudadController {
             throw new CiudadNotFoundException(id);
         }
     }
+     */
 }

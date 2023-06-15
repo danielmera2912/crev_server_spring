@@ -144,7 +144,7 @@ public class UsuarioController {
     }
 
 
-
+    /*
     @DeleteMapping("/usuario/{id}")
     public Usuario deleteUsuario(@PathVariable Long id) {
         if(usuarioService.existsById(id)){
@@ -155,4 +155,5 @@ public class UsuarioController {
             throw new UsuarioNotFoundException(id);
         }
     }
+     */
 }

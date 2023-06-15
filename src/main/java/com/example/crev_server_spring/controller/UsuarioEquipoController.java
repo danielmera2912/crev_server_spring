@@ -47,6 +47,7 @@ public class UsuarioEquipoController {
         }
     }
     // Eliminar una relación de usuario con equipo
+    /*
     @DeleteMapping("/usuario_equipo/{id}")
     public UsuarioEquipo deleteUsuario(@PathVariable Long id) {
         if(usuarioEquipoService.existsById(id)){
@@ -57,4 +58,6 @@ public class UsuarioEquipoController {
             throw new UsuarioEquipoNotFoundException(id);
         }
     }
+
+     */
 }

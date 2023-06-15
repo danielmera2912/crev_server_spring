@@ -42,6 +42,7 @@ public class DeporteController {
         }
     }
     // Eliminar un deporte
+    /*
     @DeleteMapping("/deporte/{id}")
     public Deporte deleteDeporte(@PathVariable Long id) {
         if(deporteService.existsById(id)){
@@ -52,4 +53,5 @@ public class DeporteController {
             throw new DeporteNotFoundException(id);
         }
     }
+     */
 }
