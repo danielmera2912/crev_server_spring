@@ -6,6 +6,7 @@ import com.example.crev_server_spring.dto.UserDtoConverter;
 import com.example.crev_server_spring.error.UsuarioNotFoundException;
 import com.example.crev_server_spring.modelo.Usuario;
 import com.example.crev_server_spring.repos.UsuarioRepository;
+import com.example.crev_server_spring.security.jwt.JwtProvider;
 import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import com.example.crev_server_spring.dto.GetUserDto;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.security.MessageDigest;
@@ -25,11 +28,11 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final UserDtoConverter userDtoConverter;
     private final UsuarioRepository usuarioRepository;
+    private final JwtProvider tokenProvider;
     // Obtener usuarios
     @GetMapping("/usuario")
     public ResponseEntity<Map<String, Object>> obtenerTodos(@RequestParam(defaultValue = "0") Integer page) {
         int size = 9;
-
         // Obtiene todos los usuarios, incluido el usuario con ID 0
         List<Usuario> usuarios = usuarioService.findAll();
 
@@ -110,14 +113,20 @@ public class UsuarioController {
                         usuarioService.save(newUser)));
     }
     @PutMapping("/usuario/{id}")
-    public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario user) {
+    public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario user, @RequestHeader("Authorization") String token) {
         Optional<Usuario> userCurrent = usuarioService.findById(id);
+        Long userId = tokenProvider.getUserIdFromJWT(token);
         if (userCurrent.isPresent()) {
-            user.setId(id);
-            user.setCreatedAt(userCurrent.get().getCreatedAt());
-            Usuario userUpdated = usuarioService.modify(user);
-            return new ResponseEntity<>(userUpdated, HttpStatus.OK);
-        } else {
+            if (id == userId) {
+                user.setId(id);
+                user.setCreatedAt(userCurrent.get().getCreatedAt());
+                Usuario userUpdated = usuarioService.modify(user);
+                return new ResponseEntity<>(userUpdated, HttpStatus.OK);
+            }else {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario no autorizado para eliminar el evento");
+            }
+        }
+        else {
             throw new UsuarioNotFoundException(id);
         }
     }
