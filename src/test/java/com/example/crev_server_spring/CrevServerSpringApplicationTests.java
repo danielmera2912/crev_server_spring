@@ -33,7 +33,7 @@ public class CrevServerSpringApplicationTests {
         // Crear instancias de las clases necesarias
         UsuarioService usuarioService = Mockito.mock(UsuarioService.class);
         UserDtoConverter userDtoConverter = Mockito.mock(UserDtoConverter.class);
-        UsuarioController usuarioController = new UsuarioController(usuarioService, userDtoConverter, null);
+        UsuarioController usuarioController = new UsuarioController(usuarioService, userDtoConverter, null, null);
 
         // Crear el objeto CreateUserRequest de prueba
         CreateUserRequest newUser = CreateUserRequest.builder()
@@ -91,7 +91,7 @@ public class CrevServerSpringApplicationTests {
         Mockito.when(eventoService.findById(Mockito.anyLong())).thenReturn(Optional.of(evento));
 
         // Crear una instancia del controlador de evento con el servicio simulado
-        EventoController eventoController = new EventoController(eventoService);
+        EventoController eventoController = new EventoController(eventoService, null);
 
         // Ejecutar el método a probar
         ResponseEntity<Evento> response = eventoController.obtenerUno(1L);
