@@ -40,10 +40,15 @@ public class JwtProvider {
     }
 
     public Long getUserIdFromJWT(String token) {
+
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
         Claims claims = Jwts.parser()
                 .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                 .parseClaimsJws(token)
                 .getBody();
+
         return Long.parseLong(claims.getSubject());
     }
 

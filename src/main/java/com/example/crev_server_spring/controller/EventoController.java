@@ -3,12 +3,18 @@ package com.example.crev_server_spring.controller;
 import com.example.crev_server_spring.error.EventoNotFoundException;
 import com.example.crev_server_spring.modelo.Equipo;
 import com.example.crev_server_spring.modelo.Evento;
+import com.example.crev_server_spring.modelo.Usuario;
+import com.example.crev_server_spring.modelo.UsuarioEventoDTO;
+import com.example.crev_server_spring.security.jwt.JwtProvider;
 import com.example.crev_server_spring.service.EventoService;
+import com.example.crev_server_spring.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +24,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class EventoController {
     private final EventoService eventoService;
+    private final JwtProvider tokenProvider;
     // Obtener los eventos
     @GetMapping("/evento")
     public ResponseEntity<Map<String, Object>> obtenerTodos(
@@ -86,18 +93,6 @@ public class EventoController {
         }
     }
 
-
-    // Eliminar un evento
-    @DeleteMapping("/evento/{id}")
-    public Evento deleteEvento(@PathVariable Long id) {
-        if(eventoService.existsById(id)){
-            Evento result = eventoService.findById(id).get();
-            eventoService.deleteById(id);
-            return result;
-        }else{
-            throw new EventoNotFoundException(id);
-        }
-    }
     // Buscar un evento según la ciudad y el deporte
     @GetMapping("/evento/busqueda")
     public List<Evento> buscarEventos(
@@ -124,6 +119,31 @@ public class EventoController {
             return eventos;
         } else {
             throw new IllegalArgumentException("Debe proporcionar al menos un parámetro de búsqueda");
+        }
+    }
+    // Eliminar un evento
+    @DeleteMapping("/evento/{id}")
+    public Evento deleteEvento(@PathVariable Long id, @RequestHeader("Authorization") String token) {
+
+        Long userId = tokenProvider.getUserIdFromJWT(token);
+        Long primerUsuarioId = null;
+
+        List<UsuarioEventoDTO> usuarios = eventoService.findById(id).get().getUsuarios();
+        if (!usuarios.isEmpty()) {
+            primerUsuarioId = usuarios.get(0).getId();
+        }
+
+        if(eventoService.existsById(id)){
+            if(userId==primerUsuarioId){
+                Evento result = eventoService.findById(id).get();
+                eventoService.deleteById(id);
+                return result;
+            }else{
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario no autorizado para eliminar el evento");
+            }
+
+        }else{
+            throw new EventoNotFoundException(id);
         }
     }
 

@@ -30,6 +30,7 @@
 								},
 								"url": {
 									"raw": "localhost:8080/usuario?page=0",
+									"protocol": "http",
 									"host": [
 										"localhost"
 									],
@@ -183,7 +184,8 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario",
+									"raw": "http://localhost:8080/usuario",
+									"protocol": "http",
 									"host": [
 										"localhost"
 									],
